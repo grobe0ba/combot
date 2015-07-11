@@ -97,7 +97,6 @@ function process_hooks
 		ud)
 			URL="http://www.urbandictionary.com/define.php?term=$EXTRA"
 			echo -en "L$URL\r\nUrban Dictionary: $EXTRA\r\n" >&10
-			echo "Grep in UD"
 			OLINE=`lynx --source "$URL" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//" -e "s/<br[/]*>/ /g" -e "s/\&quot\;/'/g" -e "s/&#39;/'/g"`
 			echo -en " $OLINE\r\n" >&10
 			;;
@@ -114,6 +113,31 @@ function process_hooks
 		getmessage "$PERSON" &
 	fi
 	unset DIDMSG
+
+	#if [ -z $DIDCHAT ]; then
+	#	allchat "$EXTRA" "$PERSON" &
+	#fi
+
+	if `echo "$LINE" | grep -q "nullogic spins"`; then
+		echo -en "etrips nullogic\r\n" >&10
+	fi
+
+	if `echo "$LINE" | grep -q joined`; then
+		if `echo "$LINE" | grep -q mjt`; then
+			echo -en "eslaps mjt about the face with a large, wet trout\r\n" >&10
+		fi
+		if `echo "$LINE" | grep -q elita`; then
+			#echo -en "eaffectionately fondles elita's tit\r\n" >&10
+			echo "" >/dev/null
+		fi
+		if `echo "$LINE" | grep -q felix`; then
+			echo -en "emotorboats felix tits\r\n" >&10
+		fi
+		if `echo "$LINE" | grep -q hapiworm`; then
+			echo -en "egrabs hapiworm\s ass\r\n" >&10
+		fi
+
+	fi
 
 	return
 }

@@ -4,8 +4,8 @@
 #This license supercedes all previous licenses used in this project, and applies to ALL previous commits to this repository.
 #Certain files in the project are licensed under the GNU GPLv3, and are specified as such in the files themselves.
 
-ROOM=bot
-PORT=64467
+ROOM=bar
+PORT=64463
 
 if [ -e comsock ]; then rm comsock; fi
 
@@ -96,7 +96,6 @@ do
 	read -u 10 LINE
 	LINE=`echo "$LINE" | killcolor`
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
-	echo "Seaching for owner"
 	if `echo "$LINE" | grep -q grobe0ba`; then
 		send_ping "$LINE"
 	fi
