@@ -1,5 +1,8 @@
 function process_hooks
 {
+	echo Processing hooks
 	#Add functionality here
+	LINE="$1"
+
 	return
 }

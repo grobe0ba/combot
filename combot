@@ -3,9 +3,7 @@
 #combot is licensed under a (http://creativecommons.org/licenses/by-sa/4.0/) Creative Commons Attribution-ShareAlike 4.0 International License. See LICENSE.
 
 ROOM=bar
-PORT=64454
-
-. $HOME/src/scripts/commode/hooks
+PORT=64455
 
 if [ -e comsock ]; then rm comsock; fi
 
@@ -60,14 +58,12 @@ function msg
 			go)
 				echo -en "g$EXTRA\r\n" >&10;
 				;;
-			reload)
-				. $HOME/src/scripts/commode/hooks
-				;;
 			'?')
 				echo -en "sgrobe0ba@faeroes\r\nIncorrect function\r\n" >&10
 				;;
 		esac
 	fi
+	. $HOME/src/scripts/commode/hooks
 	process_hooks "$LINE"
 	return
 }
