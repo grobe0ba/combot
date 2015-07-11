@@ -13,7 +13,7 @@ function getmessage
 	PERSON="$1"
 
 	if `grep -q $PERSON <(find $HOME/howie/msgs)`; then
-		sed -e 's/^/ /' $HOME/howie/msgs/$PERSON
+		sed -e 's/^/ /' $HOME/howie/msgs/$PERSON >&10
 		rm $HOME/howie/msgs/$PERSON
 	fi
 }

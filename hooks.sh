@@ -1,3 +1,5 @@
+. $HOME/src/scripts/commode/messages.sh
+
 function allchat
 {
         EXTRA=$1
@@ -123,7 +125,14 @@ function process_hooks
 			chat "$EXTRA" "$PERSON"
 			DIDCHAT=1
 			;;
+		msg)
+			PERS=`gcut -d ' ' -f1 <(echo "$EXTRA")`
+			EX=`gcut -d ' ' -f1 --complement <(echo "$EXTRA")`
+			addmessage "$PERS" "$EX"
+			;;
 	esac
+
+	getmessage "$PERSON" &
 
 	#if [ -z $DIDCHAT ]; then
 	#	allchat "$EXTRA" "$PERSON" &
