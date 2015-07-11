@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
 ROOM=botdev
-PORT=64447
+PORT=64451
 
 if [ -e comsock ]; then rm comsock; fi
 
@@ -25,11 +25,13 @@ function pubmsg
 	return
 }
 
-function privmsg
+function msg
 {
 	LINE=$1
-	PERSON=`echo "$LINE" | gcut -d ' ' -f 1`
+	PERSON=`echo "$LINE" | gcut -d ' ' -f 1 | sed -e 's/://'`
 	LINE=`echo "$LINE" | gcut -d' ' -f 1 --complement`
+
+	echo "Message from $PERSON: $LINE"
 
 	if [ "$PERSON" == "grobe0ba@faeroes" ]; then
 		COMMAND=`echo "$LINE" | gcut -d ' ' -f 1`
@@ -37,10 +39,11 @@ function privmsg
 
 		case "$COMMAND" in
 			quit)
-				echo -en "q\n" >&10
+				echo -en "q\n\n" >&10
+				pkill socat
 				;;
 			say)
-				echo -en " $EXTRA\n" >&10
+				echo -en " $EXTRA\n\n\n" >&10
 				;;
 			msg)
 				TO=`echo "$LINE" | gcut -d ' ' -f 1,2`
@@ -48,7 +51,7 @@ function privmsg
 				echo -en "s$TO\n$MSG\n" >&10
 				;;
 			go)
-				echo -en "g$EXTRA\n";
+				echo -en "g$EXTRA\n\n" >&10;
 				;;
 			'?')
 				echo -en "sgrobe0ba@faeroes\nIncorrect function\n" >&10
@@ -85,19 +88,10 @@ do
 	read -u 10 LINE
 	echo $LINE
 	LINE=`echo "$LINE" | killcolor`
-	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]]'`
+	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
 	echo Check: send_ping
 	if `grep -q grobe0ba <(echo "$LINE")`; then
 		send_ping "$LINE"
 	fi
-	echo Check: privmsg
-	if `grep -q "^\*" <(echo "$LINE")`; then
-		echo Attempting privmsg
-		privmsg "$LINE"
-	fi
-	echo Check: pubmsg
-	if `grep -q "^\[" <(echo "$LINE")`; then
-		echo Attempting pubmsg
-		pubmsg "$LINE"
-	fi
+	msg "$LINE"
 done
