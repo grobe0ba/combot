@@ -91,7 +91,6 @@ EOF
 
 function process_hooks
 {
-	echo Processing hooks
 	#Add functionality here
 	LINE="$1"
 
@@ -121,21 +120,18 @@ function process_hooks
 
 	case "$COMMAND" in
 		chat)
-			echo Attempting to chat
 			chat "$EXTRA" "$PERSON"
 			DIDCHAT=1
 			;;
 		msg)
 			PERS=`gcut -d ' ' -f1 <(echo "$EXTRA")`
 			EX=`gcut -d ' ' -f1 --complement <(echo "$EXTRA")`
-			echo Message to $PERS: $EX
 			addmessage "$PERS" "$EX" "$PERSON"
 			DIDMSG=1
 			;;
 	esac
 
 	if [ -z $DIDMSG ]; then
-		echo "Checking to see if $PERSON has a message"
 		getmessage "$PERSON" &
 	fi
 	unset DIDMSG

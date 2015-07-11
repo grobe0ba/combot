@@ -23,7 +23,6 @@ function pubmsg
 	PERSON=`echo "$LINE" | gcut -d ' ' -f 1`
 	LINE=`echo "$LINE" | gcut -d ' ' -f 1 --complement`
 
-	echo "Public Message from $PERSON: $LINE"
 	return
 }
 
@@ -34,7 +33,6 @@ function msg
 	PERSON=`echo "$LINE" | gcut -d ' ' -f 1 | sed -e 's/://'`
 	LINE=`echo "$LINE" | gcut -d' ' -f 1 --complement`
 
-	echo "Message from $PERSON: $LINE"
 
 	if [ "$PERSON" == "grobe0ba@faeroes" ]; then
 		COMMAND=`echo "$LINE" | gcut -d ' ' -f 1`
@@ -96,7 +94,6 @@ do
 	read -u 10 LINE
 	LINE=`echo "$LINE" | killcolor`
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
-	echo "$LINE"
 	if `grep -q grobe0ba <(echo "$LINE")`; then
 		send_ping "$LINE"
 	fi

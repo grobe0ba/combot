@@ -6,7 +6,6 @@ function addmessage
 	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
 	FROM=`echo "$FROM" | tr -cd "[:alnum:]"`
 	EXTRA=`echo "$EXTRA" | tr -cd "[:print:]"`
-	echo PERSON=$PERSON\tSESNAM=$SESNAM\tEXTRA=$EXTRA
 	echo "$SESNAM, message from $FROM: $EXTRA" >> $HOME/howie/msgs/$SESNAM
 	
 }
