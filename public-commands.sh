@@ -29,6 +29,9 @@ case "${COMMAND}" in
     whois)
 	whois_list "${ARGUMENTS}";
 	;;
+    whoami)
+	whois_list "$(echo "${ARGUMENTS}" | cut -d' ' -f1)"
+	;;
 esac
 
 if [ -z ${MSG_SENT} ];
