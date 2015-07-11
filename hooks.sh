@@ -94,6 +94,8 @@ function process_hooks
 	#Add functionality here
 	LINE="$1"
 
+	PERSON=`tr -cd '[:alnum:]@' <(echo "$LINE")`
+
 	if [ "$PERSON" == "grobe0ba@faeroes" ]; then
 		COMMAND=`echo "$LINE" | gcut -d ' ' -f 1`
 		EXTRA=`echo "$LINE" | gcut -d ' ' -f 1 --complement`
@@ -101,6 +103,9 @@ function process_hooks
 		case "$COMMAND" in
 			raw)
 				echo -en "$EXTRA\r\n" >&10
+				;;
+			mute)
+				echo -en "m$EXTRA\r\n" >&10
 				;;
 			'?')
 				echo -en "sgrobe0ba@faeroes\r\nIncorrect function\r\n" >&10
