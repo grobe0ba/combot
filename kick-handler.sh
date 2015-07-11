@@ -7,7 +7,7 @@ REQ="$(echo "${LINE}" | cut -d' ' -f2)"
 
 for p in $(xargs < ./kickers);
 do
-    if [ "$(echo ${REQ} | cut -d'@' -f1)" == "${P}" ];
+    if [ "$(echo "${REQ}" | cut -d'@' -f1)" == "${p}" ];
     then
 	kick_approve &
 	break
