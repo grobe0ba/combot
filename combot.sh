@@ -98,16 +98,5 @@ do
 	if `grep -q grobe0ba <(echo "$LINE")`; then
 		send_ping "$LINE"
 	fi
-	if `grep -q joined <(echo "$LINE")`; then
-		if `grep -q elita <(echo "$LINE")`; then
-			echo -en "egrabs elita's ass\r\n" >&10
-		fi
-		if `grep -q felix <(echo "$LINE")`; then
-			echo -en "emotorboats felix tits\r\n" >&10
-		fi
-		if `grep -q hapiworm <(echo "$LINE")`; then
-			echo -en "ekisses hapiworm under the starlight\r\n" >&10
-		fi
-	fi
 	msg "$LINE"
 done
