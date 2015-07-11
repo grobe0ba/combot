@@ -68,7 +68,7 @@ function send_ping
 }
 
 #Establish PTY->TCP socket link using socat
-socat exec:'ssh -t iceland com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,fork &
+socat exec:'ssh -t gropebot@sdf.org com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,fork &
 #Grab PID for socat for loop monitoring
 PID=$!
 
