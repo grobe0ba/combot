@@ -10,13 +10,13 @@ function send_message
 
 function get_message
 {
-    if $(find ./store | egrep -E -q $PERSON);
+    if [ -e "./store/${PERSON}" ];
     then
-	cat ./store/$PERSON |
+	cat "./store/${PERSON}" |
 	    while read MSGLINE
 	    do
-		msg_out "$MSGLINE"
+		msg_out "${MSGLINE}"
 	    done
-	rm ./store/$PERSON
+	rm "./store/${PERSON}"
     fi
 }
