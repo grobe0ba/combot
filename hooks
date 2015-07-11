@@ -1,3 +1,5 @@
 function process_hooks
 {
+	#Add functionality here
+	return
 }
