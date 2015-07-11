@@ -9,7 +9,12 @@ for p in $(xargs < ./kickers);
 do
     if [ "$(echo "${REQ}" | cut -d'@' -f1)" == "${p}" ];
     then
-	mute_approve &
+	if [[ "${WHO}" != "${OWNER}" && "${WHO}" != "bag@faeroes" ]];
+	then
+	    mute_approve &
+	else
+	    msg_out "Nope, not muting him. Do thine own dirty work!"
+	fi
 	break
     fi
 done
