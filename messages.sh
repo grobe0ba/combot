@@ -2,10 +2,12 @@ function addmessage
 {
 	EXTRA="$2"
 	PERSON="$1"
+	FROM="$3"
 	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
+	FROM=`echo "$FROM" | tr -cd "[:alnum:]"`
 	EXTRA=`echo "$EXTRA" | tr -cd "[:print:]"`
 	echo PERSON=$PERSON\tSESNAM=$SESNAM\tEXTRA=$EXTRA
-	echo "$EXTRA" >> $HOME/howie/msgs/$SESNAM
+	echo "$SESNAM, message from $FROM: $EXTRA" >> $HOME/howie/msgs/$SESNAM
 	
 }
 

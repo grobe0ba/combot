@@ -129,7 +129,7 @@ function process_hooks
 			PERS=`gcut -d ' ' -f1 <(echo "$EXTRA")`
 			EX=`gcut -d ' ' -f1 --complement <(echo "$EXTRA")`
 			echo Message to $PERS: $EX
-			addmessage "$PERS" "$EX"
+			addmessage "$PERS" "$EX" "$PERSON"
 			DIDMSG=1
 			;;
 	esac
