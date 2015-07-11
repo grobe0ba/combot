@@ -3,6 +3,7 @@
 function msg
 {
     echo "${LINE}"
+    echo "${LINE}" >> commode.log
     LINE="${1}"
     RLINE="${1}"
 
