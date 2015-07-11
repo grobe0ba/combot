@@ -1,6 +1,8 @@
 #!/usr/local/bin/bash
 
-PORT=64008
+set -x
+
+PORT=64013
 
 ROOM=roof
 

@@ -14,7 +14,7 @@ trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
 . ./interface.sh
 
 #Establish PTY->TCP socket link using socat
-socat exec:'ssh -t gropebot@sdf.org com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
+socat exec:'ssh -t gropebot@faeroes.sdf.org com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
 #Grab PID for socat for loop monitoring
 PID=$!
 
@@ -24,11 +24,13 @@ sleep 2;
 #Open the TCP socket, file descriptor 10
 exec 10<>/dev/tcp/127.0.0.1/$PORT
 
+sleep 5;
+
 #Join the room
 echo -en "g$ROOM\r\n" >&10
 
 #Wait again for everything to settle down
-sleep 1;
+sleep 3;
 while $(kill -s 0 $PID)
 do
 	read -u 10 LINE
