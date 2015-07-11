@@ -136,7 +136,7 @@ function process_hooks
 		ud)
 			URL="http://www.urbandictionary.com/define.php?term=$EXTRA"
 			echo -en "L$URL\r\nUrban Dictionary: $EXTRA\r\n" >&10
-			OLINE=`lynx --source "$URL" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//"`
+			OLINE=`lynx --source "$URL" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//" -e "s/<br[/]*>/ /g" -e "s/\&quot\;/'/g" -e "s/&#39;/'/g"`
 			echo -en " $OLINE\r\n" >&10
 			;;
 	esac
