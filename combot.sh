@@ -1,5 +1,14 @@
 #!/usr/local/bin/bash
 
+function cleanup
+{
+	echo Bailing out...
+	pkill socat
+	pkill cat 
+	BAIL=1
+}
+trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
+
 . ./config.sh
 
 . ./interface.sh
