@@ -5,7 +5,7 @@ function allchat
         TMP=`mktemp chat.XXXXX`
         TMP1=`mktemp chat.XXXXX`
         SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
-        EXTRA=`echo "$EXTRA" | tr -cd "[[:alnum:][:space:]]"`
+        EXTRA=`echo "$EXTRA" | tr -cd "[[:alnum:][:space:]]\[\]"`
         cat > $TMP <<EOF
 <?xml version='1.0'?>
 <methodCall>
@@ -125,9 +125,9 @@ function process_hooks
 			;;
 	esac
 
-	if [ -z $DIDCHAT ]; then
-		allchat "$EXTRA" "$PERSON" &
-	fi
+	#if [ -z $DIDCHAT ]; then
+	#	allchat "$EXTRA" "$PERSON" &
+	#fi
 
 	return
 }

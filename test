@@ -1,0 +1,6 @@
+#!/usr/local/bin/bash
+
+. ./messages
+
+addmessage "This is a test message" "[grobe0ba]"
+addmessage "Yet another test message" "[grobe0ba]"

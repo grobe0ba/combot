@@ -1,0 +1,58 @@
+function connect
+{
+	exec 16<>/dev/tcp/localhost/6379
+	return
+}
+
+function addmessage
+{
+	connect
+
+	EXTRA="$1"
+	PERSON="$2"
+	UUID=`uuidgen`
+	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
+	EXTRA=`echo "$EXTRA" | tr -cd "[[:print:]]"`
+	cat <&16 >/dev/null
+	echo -en "HSET MSGS $UUID \"$EXTRA\"\r\n" >&16
+	echo -en "SADD $SESNAM $UUID\r\n" >&16
+	echo -en "QUIT\r\n" >&16
+}
+
+function getmessages
+{
+	connect
+	
+	PERSON="$2"
+	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
+	TMP=`mktemp redis-combot.XXXXX`
+	echo -en "SCARD $SESNAM\r\n" >&16
+	cat <&16 > $TMP
+	cat $TMP |
+	while read LINE
+		if `grep -q "^:" <(echo "$LINE")`; then
+			NMSGS=`sed -e 's/^://' <(echo "$LINE")`
+			if [ $NMSGS -gt 0 ]; then
+				while [ $NMSGS -gt 0 ]; do
+					echo "SPOP $SESNAM\r\n" >&16
+					cat <&16 |
+					while read LINE1; do
+						if `grep -qv "^$" <(echo "$LINE1")`; then
+							MNUM=$LINE1
+						fi
+					done
+					echo -en "HGET MSGS $MNUM\r\n" >&16
+					cat <&16 |
+					while read LINE1; do
+						if `grep -qv "^&" <(echo "$LINE1")`; then
+							echo -en " $PERSON, you were left this message: $LINE1\r\n" >&10
+						fi
+					done
+				done
+			fi
+		fi
+	done
+
+	echo -en "QUIT\r\n" >&16
+	cat <&16 >/dev/null
+}
