@@ -11,7 +11,7 @@ function cleanup
 }
 trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
 
-socat exec:'com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:65444,bind=127.0.0.1,fork &
+socat exec:'com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:65444,bind=127.0.0.1,crnl,fork &
 sleep 2;
 exec 10<>/dev/tcp/127.0.0.1/65444
 cat <&10 &
