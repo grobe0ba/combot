@@ -32,7 +32,7 @@ echo -en "g$ROOM\r\n" >&10
 sleep 3;
 while $(kill -s 0 $SOCAT_PID)
 do 
-   read -u 10 LINE
+   read -u 10 -t 5 LINE
     . ./config.sh
     LINE=$(echo "$LINE" | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
     msg "$LINE"

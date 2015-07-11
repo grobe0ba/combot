@@ -2,8 +2,12 @@
 
 function msg
 {
-    echo "${LINE}"
-    echo "${LINE}" >> commode.log
+    if [ -z "${LINE}" ];
+    then
+	echo "${LINE}"
+	echo "${LINE}" >> commode.log
+    fi
+    
     LINE="${1}"
     RLINE="${1}"
 
