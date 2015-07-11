@@ -1,16 +1,14 @@
 #!/usr/local/bin/bash
 
 COMMAND=$(echo "$LINE" | cut -d' ' -f1)
-ARGUMENTS=$(echo "$LINE" | sed -e 's/#.*#//')
+ARGUMENTS=$(echo "$LINE" | cut -d' ' -f2-)
 
 case "$COMMAND" in
 	quit)
 		key_out q;
 		;;
 	say)
-		RECIP=$(echo "$ARGUMENTS" | cut -d' ' -f1);
-		MSG=$(echo "$ARGUMENTS" | cut -d' ' -f2-);
-		msg_out "$RECIP" "$MSG";
+		msg_out "$ARGUMENTS";
 		;;
 	emote)
 		emote "$ARGUMENTS";
