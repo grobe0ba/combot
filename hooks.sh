@@ -128,11 +128,17 @@ function process_hooks
 		msg)
 			PERS=`gcut -d ' ' -f1 <(echo "$EXTRA")`
 			EX=`gcut -d ' ' -f1 --complement <(echo "$EXTRA")`
+			echo Message to $PERS: $EX
 			addmessage "$PERS" "$EX"
+			DIDMSG=1
 			;;
 	esac
 
-	getmessage "$PERSON" &
+	if [ -z $DIDMSG ]; then
+		echo "Checking to see if $PERSON has a message"
+		getmessage "$PERSON" &
+	fi
+	unset DIDMSG
 
 	#if [ -z $DIDCHAT ]; then
 	#	allchat "$EXTRA" "$PERSON" &

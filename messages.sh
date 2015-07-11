@@ -4,6 +4,7 @@ function addmessage
 	PERSON="$1"
 	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
 	EXTRA=`echo "$EXTRA" | tr -cd "[:print:]"`
+	echo PERSON=$PERSON\tSESNAM=$SESNAM\tEXTRA=$EXTRA
 	echo "$EXTRA" >> $HOME/howie/msgs/$SESNAM
 	
 }
@@ -11,9 +12,10 @@ function addmessage
 function getmessage
 {
 	PERSON="$1"
+	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
 
-	if `grep -q $PERSON <(find $HOME/howie/msgs)`; then
-		sed -e 's/^/ /' $HOME/howie/msgs/$PERSON >&10
-		rm $HOME/howie/msgs/$PERSON
+	if `grep -q $SESNAM <(find $HOME/howie/msgs)`; then
+		sed -e 's/^/ /' $HOME/howie/msgs/$SESNAM >&10
+		rm $HOME/howie/msgs/$SESNAM
 	fi
 }
