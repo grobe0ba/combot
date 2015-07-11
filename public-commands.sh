@@ -9,6 +9,11 @@
 COMMAND="$(echo "${LINE}" | cut -d' ' -f1)"
 ARGUMENTS="$(echo "${LINE}" | cut -d' ' -f2-)"
 
+if $(echo "${LINE}" | egrep -qi "what is love");
+then
+    msg_out "Baby don't hurt me, don't hurt me, no more!"
+fi
+
 case "${COMMAND}" in
 #    chat)
 #	do_chat "$ARGUMENTS";
