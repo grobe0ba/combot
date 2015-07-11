@@ -4,7 +4,7 @@ function allchat
         PERSON=$2
         TMP=`mktemp chat.XXXXX`
         TMP1=`mktemp chat.XXXXX`
-        SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
+        SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
         EXTRA=`echo "$EXTRA" | tr -cd "[[:alnum:][:space:]]\[\]"`
         cat > $TMP <<EOF
 <?xml version='1.0'?>
@@ -44,7 +44,7 @@ function chat
 	PERSON=$2
 	TMP=`mktemp chat.XXXXX`
 	TMP1=`mktemp chat.XXXXX`
-	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
+	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
 	EXTRA=`echo "$EXTRA" | tr -cd "[[:alnum:][:space:]]"`
 	cat > $TMP <<EOF
 <?xml version='1.0'?>
@@ -111,7 +111,7 @@ function process_hooks
 
 	LINE=`sed -e 's/  */ /g' -e 's/^ *//' <(echo "$LINE")`
 
-	PERSON=`echo "$LINE" | gcut -d ' ' -f 1 | tr -cd "[[:alnum:]]"`
+	PERSON=`echo "$LINE" | gcut -d ' ' -f 1 | tr -cd "[:alnum:]"`
 	COMMAND=`gcut -d ' ' -f 2 <(echo "$LINE")`
 	EXTRA=`echo "$LINE" | gcut -d ' ' -f 1,2 --complement`
 

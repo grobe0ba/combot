@@ -1,8 +1,4 @@
-function connect
-{
-	exec 16<>/dev/tcp/localhost/6379
-	return
-}
+. $HOME/src/scripts/commode/redis
 
 function addmessage
 {
@@ -11,55 +7,31 @@ function addmessage
 	EXTRA="$1"
 	PERSON="$2"
 	UUID=`uuidgen`
-	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
-	EXTRA=`echo "$EXTRA" | tr -cd "[[:print:]]"`
-	echo -en "HSET MSGS $UUID \"$EXTRA\"\r\n" >&16
-	echo -en "SADD $SESNAM $UUID\r\n" >&16
-	echo -en "QUIT\r\n" >&16
-	cat <&16 >/dev/null
-	return
+	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
+	EXTRA=`echo "$EXTRA" | tr -cd "[:print:]"`
+	HSET MSGS $UUID "$EXTRA"
+	SADD $SESNAM $UUID
+	
+	disconnect
 }
 
 function getmessages
 {
 	connect
 	
-	PERSON="$2"
+	PERSON="$1"
 	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
-	TMP=`mktemp redis-combot.XXXXX`
-	echo -en "SCARD $SESNAM\r\n" >&16
-	cat <&16 > $TMP
-	cat $TMP |
-	while read LINE
-		if `grep -q "^:" <(echo "$LINE")`; then
-			NMSGS=`sed -e 's/^://' <(echo "$LINE")`
-			if [ $NMSGS -gt 0 ]; then
-				while [ $NMSGS -gt 0 ]
-				do
-					echo "SPOP $SESNAM\r\n" >&16
-					cat <&16 |
-					while read LINE1
-					do
-						if `grep -qv "^$" <(echo "$LINE1")`; then
-							MNUM=`sed -e 's/\$//' <(echo "$LINE1")`
-						fi
-					done
-					echo -en "HGET MSGS $MNUM\r\n" >&16
-					cat <&16 |
-					while read LINE1
-					do
-						if `grep -qv "^&" <(echo "$LINE1")`; then
-							LINE1=`sed -e 's/\&//' <(echo "$LINE1")`
-							echo -en " $PERSON, you were left this message: $LINE1\r\n" >&10
-						fi
-					done
-					NMSGS=`expr $NMSGS - 1`
-				done
-			fi
-		fi
-	done
+	NMSGS=$(SCARD $PERSON)
+	if [ $NMSGS -gt 0 ]; then
+		while [ $NMSGS -gt 0]
+		do
+			ID=$(SPOP $PERSON)
+			MSG=$(HGET MSGS $ID)
+			HDEL $ID
+			echo -en " $PERSON, $MSG\r\n" >&10
+			NMSGS=$(SCARD $PERSON)
+		done
+	fi
 
-	echo -en "QUIT\r\n" >&16
-	cat <&16 >/dev/null
-	return
+	disconnect
 }
