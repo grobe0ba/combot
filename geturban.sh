@@ -15,7 +15,7 @@ function geturban
 			unset DOPRNT
 		fi
 		if [ -n "$DOPRNT" ]; then
-			./stripHTML.sed <(echo "$CLINE" | tr -d '\n') | tr -d '\n' | tr -cd '[:print:]'
+			$HOME/src/scripts/commode/stripHTML.sed <(echo "$CLINE" | sed -s "s/<br[/]*>/ /g" | tr -d '\n') | tr -d '\n' | tr -cd '[:print:]'
 			echo -en " "
 		fi
 	done
