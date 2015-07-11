@@ -58,11 +58,15 @@ function msg
 			go)
 				echo -en "g$EXTRA\r\n" >&10;
 				;;
+			reload)
+				. $HOME/scripts/combot/hooks
+				;;
 			'?')
 				echo -en "sgrobe0ba@faeroes\r\nIncorrect function\r\n" >&10
 				;;
 		esac
 	fi
+	process_hooks "$LINE"
 	return
 }
 
