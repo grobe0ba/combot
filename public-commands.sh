@@ -29,11 +29,3 @@ then
 	get_message &
 fi
 unset MSG_SENT
-
-if [ -n "$CHAT" ];
-then
-	if [ "$PERSON" != "gropebot" ];
-	then
-		do_chat "$ARGUMENTS";
-	fi
-fi
