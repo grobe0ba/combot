@@ -20,6 +20,11 @@ function msg
 	. ./kick-handler.sh
     fi
 
+    if $(echo "${LINE}" | egrep -q '^MUTE:');
+    then
+	. ./mute-handler.sh
+    fi
+
     return
 }
 
@@ -56,4 +61,9 @@ function ch_sw
 function kick_approve
 {
     echo -en "kapprove\r\n" >&10
+}
+
+function mute_approve
+{
+    echo -en "mapprove\r\n" >&10
 }
