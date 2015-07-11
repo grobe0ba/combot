@@ -52,6 +52,7 @@ EOF
 
 function process_hooks
 {
+	echo "Processing Hooks..."
 	#Add functionality here
 	LINE="$1"
 
@@ -101,6 +102,10 @@ function process_hooks
 			;;
 		source)
 			echo -en " My source code is at: https://github.com/grobe0ba/scripts/tree/master/commode\r\n" >&10
+			;;
+		colour)
+			echo -en "No colour\r\n" >&10
+			echo -en "\033[34mThis is a test message\033[0m\r\n" >&10
 			;;
 	esac
 
