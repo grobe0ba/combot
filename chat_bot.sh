@@ -1,5 +1,7 @@
 #!/usr/local/bin/bash
 
+set -x
+
 function do_chat
 {
 	EXTRA=$1

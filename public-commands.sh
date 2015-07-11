@@ -3,10 +3,10 @@
 #Additional processing functions
 . ./urbandictionary.sh
 . ./chat_bot.sh
-#. ./message_store.sh
+. ./message_store.sh
 
 COMMAND=$(echo "$LINE" | cut -d' ' -f1)
-ARGUMENTS=$(echo "$LINE" | sed -e 's/#.*#//')
+ARGUMENTS=$(echo "$LINE" | cut -d' ' -f2-)
 
 case "$COMMAND" in
 	chat)
@@ -24,7 +24,8 @@ case "$COMMAND" in
 		;;
 esac
 
-#if [ -z $MSG_SENT ];
-#then
-#	get_message &
-#fi
+if [ -z $MSG_SENT ];
+then
+	get_message &
+fi
+unset MSG_SENT

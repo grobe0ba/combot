@@ -3,19 +3,19 @@
 function send_message
 {
 	RECIP=$(echo "$1" | cut -d' ' -f1)
-	MSG=$(echo "$1" | cut -d' '-f2-)
+	MSG=$(echo "$1" | cut -d' ' -f2-)
 
 	echo "$RECIP, message from $PERSON: $MSG" >> ./store/$RECIP
 }
 
 function get_message
 {
-	if $(find ./store | grep -q $RECIP);
+	if $(find ./store | grep -q $PERSON);
 	then
-		if [ -e ./store/$RECIP ];
-		then
-			sed -e 's/^/ /' ./store/$RECIP >&10
-			rm ./store/$RECIP
-		fi
+		cat ./store/$PERSON |
+		while read MSGLINE
+		do
+			msg_out "$MSGLINE"
+		done
 	fi
 }
