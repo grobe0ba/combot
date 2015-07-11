@@ -16,7 +16,9 @@ function getmessage
 	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
 
 	if `grep -q $SESNAM <(find $HOME/howie/msgs)`; then
-		sed -e 's/^/ /' $HOME/howie/msgs/$SESNAM >&10
-		rm $HOME/howie/msgs/$SESNAM
+		if [ -e $HOME/howie/msgs/$SESNAM ]; then
+			sed -e 's/^/ /' $HOME/howie/msgs/$SESNAM >&10
+			rm $HOME/howie/msgs/$SESNAM
+		fi
 	fi
 }
