@@ -1,0 +1,103 @@
+#!/usr/local/bin/bash
+
+ROOM=botdev
+PORT=64447
+
+if [ -e comsock ]; then rm comsock; fi
+
+function cleanup
+{
+	echo Bailing out...
+	pkill socat
+	pkill cat
+	BAIL=1
+}
+trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
+
+
+function pubmsg
+{
+	LINE=$1
+	PERSON=`echo "$LINE" | gcut -d ' ' -f 1`
+	LINE=`echo "$LINE" | gcut -d ' ' -f 1 --complement`
+
+	echo "Public Message from $PERSON: $LINE"
+	return
+}
+
+function privmsg
+{
+	LINE=$1
+	PERSON=`echo "$LINE" | gcut -d ' ' -f 1`
+	LINE=`echo "$LINE" | gcut -d' ' -f 1 --complement`
+
+	if [ "$PERSON" == "grobe0ba@faeroes" ]; then
+		COMMAND=`echo "$LINE" | gcut -d ' ' -f 1`
+		EXTRA=`echo "$LINE" | gcut -d ' ' -f 1 --complement`
+
+		case "$COMMAND" in
+			quit)
+				echo -en "q\n" >&10
+				;;
+			say)
+				echo -en " $EXTRA\n" >&10
+				;;
+			msg)
+				TO=`echo "$LINE" | gcut -d ' ' -f 1,2`
+				MSG=`echo "$LINE" | gcut -d ' ' -f 1,2 --complement`
+				echo -en "s$TO\n$MSG\n" >&10
+				;;
+			go)
+				echo -en "g$EXTRA\n";
+				;;
+			'?')
+				echo -en "sgrobe0ba@faeroes\nIncorrect function\n" >&10
+				;;
+		esac
+	fi
+	return
+}
+
+function send_ping
+{
+	echo PING
+	return
+}
+
+#Establish PTY->TCP socket link using socat
+socat exec:'ssh -t iceland com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,fork &
+#Grab PID for socat for loop monitoring
+PID=$!
+
+#Have to wait a bit for everything to clear up
+sleep 2;
+
+#Open the TCP socket, file descriptor 10
+exec 10<>/dev/tcp/127.0.0.1/$PORT
+
+#Join the room
+echo -en "g$ROOM\n" >&10
+
+#Wait again for everything to settle down
+sleep 1;
+while `kill -s 0 $PID`
+do
+	read -u 10 LINE
+	echo $LINE
+	LINE=`echo "$LINE" | killcolor`
+	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]]'`
+	echo Check: send_ping
+	if `grep -q grobe0ba <(echo "$LINE")`; then
+		send_ping "$LINE"
+	fi
+	echo Check: privmsg
+	if `grep -q "^\*" <(echo "$LINE")`; then
+		echo Attempting privmsg
+		privmsg "$LINE"
+	fi
+	echo Check: pubmsg
+	if `grep -q "^\[" <(echo "$LINE")`; then
+		echo Attempting pubmsg
+		pubmsg "$LINE"
+	fi
+done
