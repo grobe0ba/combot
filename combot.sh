@@ -3,8 +3,7 @@
 function cleanup
 {
 	echo Bailing out...
-	pkill socat
-	pkill cat 
+	kill $SOCAT_PID
 	BAIL=1
 }
 trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
@@ -16,7 +15,7 @@ trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
 #Establish PTY->TCP socket link using socat
 socat exec:'ssh -t gropebot@faeroes.sdf.org com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
 #Grab PID for socat for loop monitoring
-PID=$!
+export SOCAT_PID=$!
 
 #Have to wait a bit for everything to clear up
 sleep 2;
@@ -31,7 +30,7 @@ echo -en "g$ROOM\r\n" >&10
 
 #Wait again for everything to settle down
 sleep 3;
-while $(kill -s 0 $PID)
+while $(kill -s 0 $SOCAT_PID)
 do
 	read -u 10 LINE
 	. ./config.sh
