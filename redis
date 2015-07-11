@@ -1,6 +1,12 @@
 function connect
 {
-	exec 20<>/dev/tcp/localhost/6739
+	exec 16<>/dev/tcp/localhost/6739
+}
+
+function disconnect
+{
+	echo -en "QUIT\r\n" >&16
+	purge
 }
 
 function make_temp
@@ -10,12 +16,12 @@ function make_temp
 
 function purge
 {
-	cat <&20 >/dev/null
+	cat <&16 >/dev/null
 }
 
 function to_tmp
 {
-	cat <&20 >$TMP
+	cat <&16 >$TMP
 }
 
 function SCARD
@@ -24,7 +30,7 @@ function SCARD
 
 	TMP=$(make_temp)
 
-	echo -en "SCARD $KEY\r\n" >&20
+	echo -en "SCARD $KEY\r\n" >&16
 	to_tmp
 
 	echo `grep "^:" $TMP | sed -e 's/^://'`
@@ -36,7 +42,7 @@ function SADD
 	KEY="$1"
 	VALUE="$2"
 
-	echo -en "SADD $KEY $VALUE\r\n" >&20
+	echo -en "SADD $KEY $VALUE\r\n" >&16
 	purge
 }
 
@@ -46,7 +52,7 @@ function SPOP
 
 	TMP=$(make_temp)
 
-	echo -en "SPOP $KEY\r\n" >&20
+	echo -en "SPOP $KEY\r\n" >&16
 	to_tmp
 	
 	echo `tail -n1 $TMP`
@@ -61,7 +67,7 @@ function HSET
 	FIELD="$2"
 	VALUE="$3"
 
-	echo -en "HSET $KEY $FIELD \"$VALUE\"\r\n" >&20
+	echo -en "HSET $KEY $FIELD \"$VALUE\"\r\n" >&16
 	purge
 }
 
@@ -70,7 +76,7 @@ function HGET
 	KEY="$1"
 	FIELD="$2"
 
-	echo -en "HGET $KEY $FIELD\r\n" >&20
+	echo -en "HGET $KEY $FIELD\r\n" >&16
 	to_tmp
 
 	echo `tail -n $TMP`
@@ -81,6 +87,6 @@ function HDEL
 	KEY="$1"
 	FIELD="$2"
 
-	echo -en "HDEL $KEY $FIELD\r\n" >&20
+	echo -en "HDEL $KEY $FIELD\r\n" >&16
 	purge
 }

@@ -2,4 +2,6 @@
 
 . ./messages
 
+connect
 getmessages grobe0ba
+disconnect
