@@ -2,6 +2,6 @@
 
 . ./messages.sh
 
-connect
-getmessages grobe0ba
-disconnect
+addmessage grobe0ba "Test Message"
+addmessage grobe0ba "Another one"
+getmessage grobe0ba

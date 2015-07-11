@@ -1,37 +1,19 @@
-. $HOME/src/scripts/commode/redis.sh
-
 function addmessage
 {
-	connect
-
-	EXTRA="$1"
-	PERSON="$2"
-	UUID=`uuidgen`
+	EXTRA="$2"
+	PERSON="$1"
 	SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
 	EXTRA=`echo "$EXTRA" | tr -cd "[:print:]"`
-	HSET MSGS $UUID "$EXTRA"
-	SADD $SESNAM $UUID
+	echo "$EXTRA" >> $HOME/howie/msgs/$SESNAM
 	
-	disconnect
 }
 
-function getmessages
+function getmessage
 {
-	connect
-	
 	PERSON="$1"
-	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
-	NMSGS=$(SCARD $PERSON)
-	if [ $NMSGS -gt 0 ]; then
-		while [ $NMSGS -gt 0]
-		do
-			ID=$(SPOP $PERSON)
-			MSG=$(HGET MSGS $ID)
-			HDEL $ID
-			echo -en " $PERSON, $MSG\r\n" >&10
-			NMSGS=$(SCARD $PERSON)
-		done
-	fi
 
-	disconnect
+	if `grep -q $PERSON <(find $HOME/howie/msgs)`; then
+		sed -e 's/^/ /' $HOME/howie/msgs/$PERSON
+		rm $HOME/howie/msgs/$PERSON
+	fi
 }
