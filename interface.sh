@@ -19,7 +19,10 @@ function msg
 
     if $(echo "${LINE}" | egrep -q '^KICK:');
     then
-	. ./kick-handler.sh
+	if $(echo "${LINE}" | egrep -qv 'no approval');
+	then
+	    . ./kick-handler.sh
+	fi
     fi
 
     if $(echo "${LINE}" | egrep -q '^MUTE:');
