@@ -1,0 +1,12 @@
+#!/usr/pkg/bin/perl
+
+#<meta content='a futuristic British all-purpose swear word. From Red Dwarf.' name='Description' property='og:description'>
+
+use strict;
+use warnings;
+
+while (<>)
+{
+    s/<meta content=('|")(.*)('|") name=('|")Description('|") property=('|")og:description('|")>/$2/;
+    print;
+}
