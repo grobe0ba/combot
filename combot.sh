@@ -3,7 +3,7 @@
 function cleanup
 {
     echo Bailing out...
-    kill -9$SOCAT_PID
+    kill $SOCAT_PID
     BAIL=1
 }
 trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT

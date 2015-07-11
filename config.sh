@@ -2,7 +2,7 @@
 
 PORT=64016
 
-ROOM=roof
+ROOM=panopticon
 
 OWNER="grobe0ba@faeroes"
 
