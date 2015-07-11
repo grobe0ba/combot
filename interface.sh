@@ -2,6 +2,7 @@
 
 function msg
 {
+    echo "${LINE}"
     LINE="${1}"
     RLINE="${1}"
 
