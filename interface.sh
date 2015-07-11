@@ -44,6 +44,6 @@ function emote
 
 function sw_ch
 {
-	echo -en "g$1\r\n"
+	echo -en "g$1\r\n" >&10
 	return
 }

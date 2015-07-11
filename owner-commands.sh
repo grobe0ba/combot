@@ -16,6 +16,15 @@ case "$COMMAND" in
 	go)
 		ch_sw $ARGUMENTS;
 		;;
+	enable_chat)
+		CHAT=1;
+		;;
+	disable_chat)
+		unset CHAT;
+		;;
+	reload)
+		. ./interface.sh;
+		;;
 	'?')
 		echo -en "sgrobe0ba@faeroes\r\nIncorrect function\r\n" >&10
 		;;
