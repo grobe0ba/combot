@@ -99,6 +99,9 @@ function process_hooks
 			OLINE=`lynx --source "$URL" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//" -e "s/<br[/]*>/ /g" -e "s/\&quot\;/'/g" -e "s/&#39;/'/g"`
 			echo -en " $OLINE\r\n" >&10
 			;;
+		source)
+			echo -en " My source code is at: https://github.com/grobe0ba/scripts/tree/master/commode\r\n" >&10
+			;;
 	esac
 
 	if [ -z $DIDMSG ]; then
@@ -119,7 +122,8 @@ function process_hooks
 			echo -en "eslaps mjt about the face with a large, wet trout\r\n" >&10
 		fi
 		if `echo "$LINE" | grep -q elita`; then
-			echo -en "eaffectionately fondles elita's tit\r\n" >&10
+			#echo -en "eaffectionately fondles elita's tit\r\n" >&10
+			echo "" >/dev/null
 		fi
 		if `echo "$LINE" | grep -q felix`; then
 			echo -en "emotorboats felix tits\r\n" >&10
