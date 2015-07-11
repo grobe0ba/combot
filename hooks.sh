@@ -94,8 +94,6 @@ function process_hooks
 	#Add functionality here
 	LINE="$1"
 
-	PERSON=`tr -cd '[:alnum:]@' <(echo "$LINE")`
-
 	if [ "$PERSON" == "grobe0ba@faeroes" ]; then
 		COMMAND=`echo "$LINE" | gcut -d ' ' -f 1`
 		EXTRA=`echo "$LINE" | gcut -d ' ' -f 1 --complement`
