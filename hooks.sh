@@ -116,7 +116,7 @@ function process_hooks
 
 	if `echo "$LINE" | grep -q joined`; then
 		if `echo "$LINE" | grep -q mjt`; then
-			echo -en "eslaps mjt about the face with a large, wet, trout\r\n" >&10
+			echo -en "eslaps mjt about the face with a large, wet trout\r\n" >&10
 		fi
 		if `echo "$LINE" | grep -q elita`; then
 			echo -en "eaffectionately fondles elita's tit\r\n" >&10
