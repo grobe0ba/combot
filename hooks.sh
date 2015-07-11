@@ -1,8 +1,6 @@
 . $HOME/src/scripts/commode/messages.sh
 #. $HOME/src/scripts/commode/geturban.sh
 
-set -x
-
 function chat
 {
 	EXTRA=$1
@@ -134,4 +132,3 @@ function process_hooks
 
 	return
 }
-set +x
