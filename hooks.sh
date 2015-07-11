@@ -1,45 +1,7 @@
 . $HOME/src/scripts/commode/messages.sh
 #. $HOME/src/scripts/commode/geturban.sh
 
-function allchat
-{
-        EXTRA=$1
-        PERSON=$2
-        TMP=`mktemp chat.XXXXX`
-        TMP1=`mktemp chat.XXXXX`
-        SESNAM=`echo "$PERSON" | tr -cd "[:alnum:]"`
-        EXTRA=`echo "$EXTRA" | tr -cd "[[:alnum:][:space:]]\[\]"`
-        cat > $TMP <<EOF
-<?xml version='1.0'?>
-<methodCall>
-        <methodName>respond</methodName>
-        <params>
-                <param>
-                        <value>$EXTRA</value>
-                </param>
-                <param>
-                        <value>$SESNAM</value>
-                </param>
-        </params>
-</methodCall>
-EOF
-        echo $TMP
-        SIZE=`cat $TMP | wc -c | sed -e 's/ *//g'`
-        exec 15<>/dev/tcp/localhost/65300
-        cat > $TMP1 <<EOF
-POST / HTTP/1.0
-User-Agent: bash
-Host: localhost
-Content-Type: text/xml
-Content-Length: $SIZE
-
-EOF
-        cat $TMP1 >&15
-        cat $TMP >&15
-        cat <&15 >/dev/null
-        rm $TMP $TMP1
-        return
-}
+set -x
 
 function chat
 {
@@ -79,9 +41,9 @@ EOF
 	cat <&15 |
 	while read RESLINE
 	do
-		if `grep -qve "^HTTP/1.0" -e "^Server:" -e "^Date:" -e "^Content" <(echo "$RESLINE")`; then
-			if `grep -q "<value>" <(echo "$RESLINE")`; then
-				RESLINE=`sed -e 's/<[^>]*>//g' <(echo "$RESLINE")`
+		if `echo "$RESLINE" | grep -qve "^HTTP/1.0" -e "^Server:" -e "^Date:" -e "^Content"`; then
+			if `echo "$RESLINE" | grep -q "<value>"`; then
+				RESLINE=`echo "$RESLINE" | sed -e 's/<[^>]*>//g'`
 				echo -en " $RESLINE\r\n" >&10
 			fi
 		fi
@@ -114,10 +76,10 @@ function process_hooks
 
 	echo "$LINE"
 
-	LINE=`sed -e 's/  */ /g' -e 's/^ *//' <(echo "$LINE")`
+	LINE=`echo "$LINE" | sed -e 's/  */ /g' -e 's/^ *//'`
 
 	PERSON=`echo "$LINE" | gcut -d ' ' -f 1 | tr -cd "[:alnum:]"`
-	COMMAND=`gcut -d ' ' -f 2 <(echo "$LINE")`
+	COMMAND=`echo "$LINE" | gcut -d ' ' -f 2`
 	EXTRA=`echo "$LINE" | gcut -d ' ' -f 1,2 --complement`
 
 	echo "$PERSON ordered $COMMAND - $EXTRA"
@@ -128,8 +90,8 @@ function process_hooks
 			DIDCHAT=1
 			;;
 		msg)
-			PERS=`gcut -d ' ' -f1 <(echo "$EXTRA")`
-			EX=`gcut -d ' ' -f1 --complement <(echo "$EXTRA")`
+			PERS=`echo "$EXTRA" | gcut -d ' ' -f1`
+			EX=`echo "$EXTRA" | gcut -d ' ' -f1 --complement`
 			addmessage "$PERS" "$EX" "$PERSON"
 			DIDMSG=1
 			;;
@@ -150,21 +112,21 @@ function process_hooks
 	#	allchat "$EXTRA" "$PERSON" &
 	#fi
 
-	if `grep -q "nullogic spins" <(echo "$LINE")`; then
+	if `echo "$LINE" | grep -q "nullogic spins"`; then
 		echo -en "etrips nullogic\r\n" >&10
 	fi
 
-	if `grep -q joined <(echo "$LINE")`; then
-		if `grep -q mjt <(echo "$LINE")`; then
+	if `echo "$LINE" | grep -q joined`; then
+		if `echo "$LINE" | grep -q mjt`; then
 			echo -en "eslaps mjt about the face with a large, wet, trout\r\n" >&10
 		fi
-		if `grep -q elita <(echo "$LINE")`; then
+		if `echo "$LINE" | grep -q elita`; then
 			echo -en "eaffectionately fondles elita's tit\r\n" >&10
 		fi
-		if `grep -q felix <(echo "$LINE")`; then
+		if `echo "$LINE" | grep -q felix`; then
 			echo -en "emotorboats felix tits\r\n" >&10
 		fi
-		if `grep -q hapiworm <(echo "$LINE")`; then
+		if `echo "$LINE" | grep -q hapiworm`; then
 			echo -en "egrabs hapiworm\s ass\r\n" >&10
 		fi
 
@@ -172,3 +134,4 @@ function process_hooks
 
 	return
 }
+set +x

@@ -96,7 +96,7 @@ do
 	read -u 10 LINE
 	LINE=`echo "$LINE" | killcolor`
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
-	if `grep -q grobe0ba <(echo "$LINE")`; then
+	if `echo "$LINE" | grep -q grobe0ba`; then
 		send_ping "$LINE"
 	fi
 	msg "$LINE"
