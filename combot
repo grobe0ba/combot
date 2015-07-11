@@ -86,10 +86,8 @@ sleep 1;
 while `kill -s 0 $PID`
 do
 	read -u 10 LINE
-	echo $LINE
 	LINE=`echo "$LINE" | killcolor`
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
-	echo Check: send_ping
 	if `grep -q grobe0ba <(echo "$LINE")`; then
 		send_ping "$LINE"
 	fi
