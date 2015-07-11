@@ -64,7 +64,7 @@ function msg
 				;;
 		esac
 	fi
-	. $HOME/src/scripts/commode/hooks
+	. $HOME/src/scripts/commode/hooks.sh
 	process_hooks "$RLINE"
 	return
 }

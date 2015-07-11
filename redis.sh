@@ -21,11 +21,14 @@ function purge
 
 function to_tmp
 {
-	cat <&16 >$TMP
+	cat <&16 >$TMP &
+	disconnect
 }
 
 function SCARD
 {
+	connect
+
 	KEY="$1"
 
 	TMP=$(make_temp)
@@ -39,15 +42,19 @@ function SCARD
 
 function SADD
 {
+	connect
+
 	KEY="$1"
 	VALUE="$2"
 
 	echo -en "SADD $KEY $VALUE\r\n" >&16
-	purge
+	disconnect
 }
 
 function SPOP
 {
+	connect
+
 	KEY="$1"
 
 	TMP=$(make_temp)
@@ -63,16 +70,19 @@ function SPOP
 
 function HSET
 {
+	connect
+
 	KEY="$1"
 	FIELD="$2"
 	VALUE="$3"
 
 	echo -en "HSET $KEY $FIELD \"$VALUE\"\r\n" >&16
-	purge
+	disconnect
 }
 
 function HGET
 {
+	connect
 	KEY="$1"
 	FIELD="$2"
 
@@ -84,9 +94,10 @@ function HGET
 
 function HDEL
 {
+	connect
 	KEY="$1"
 	FIELD="$2"
 
 	echo -en "HDEL $KEY $FIELD\r\n" >&16
-	purge
+	disconnect
 }

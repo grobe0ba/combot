@@ -1,4 +1,4 @@
-. $HOME/src/scripts/commode/redis
+. $HOME/src/scripts/commode/redis.sh
 
 function addmessage
 {
