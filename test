@@ -1,7 +1,0 @@
-#!/usr/local/bin/bash
-
-. ./messages.sh
-
-addmessage grobe0ba "Test Message"
-addmessage grobe0ba "Another one"
-getmessage grobe0ba
