@@ -134,7 +134,9 @@ function process_hooks
 			DIDMSG=1
 			;;
 		ud)
-			OLINE=`lynx --source http://www.urbandictionary.com/define.php?term="$EXTRA" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//"`
+			URL="http://www.urbandictionary.com/define.php?term=$EXTRA"
+			echo -en "L$URL\r\nUrban Dictionary: $EXTRA\r\n" >&10 &
+			OLINE=`lynx --source "$URL" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//"`
 			echo -en " $OLINE\r\n" >&10
 			;;
 	esac
