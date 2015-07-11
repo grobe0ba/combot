@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-PORT=6400
+PORT=64003
 
 ROOM=roof
 
