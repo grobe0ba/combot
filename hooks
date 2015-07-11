@@ -3,6 +3,7 @@ function chat
 	EXTRA=$1
 	PERSON=$2
 	TMP=`mktemp chat.XXXXX`
+	TMP1=`mktemp chat.XXXXX`
 	SESNAM=`echo "$PERSON" | tr -cd "[[:alnum:]]"`
 	EXTRA=`echo "$EXTRA" | tr -cd "[[:alnum:]]"`
 	cat > $TMP <<EOF
@@ -20,9 +21,9 @@ function chat
 </methodCall>
 EOF
 	echo $TMP
-	SIZE=`wc -c $TMP`
+	SIZE=`cat $TMP | wc -c | sed -e 's/ *//g'`
 	exec 15<>/dev/tcp/localhost/65300
-	cat >&15 <<EOF
+	cat > $TMP1 <<EOF
 POST / HTTP/1.0
 User-Agent: bash
 Host: localhost
@@ -30,15 +31,19 @@ Content-Type: text/xml
 Content-Length: $SIZE
 
 EOF
+	cat $TMP1 >&15
 	cat $TMP >&15
 	cat <&15 |
 	while read RESLINE
 	do
 		if `grep -qve "^HTTP/1.0" -e "^Server:" -e "^Date:" -e "^Content" <(echo "$RESLINE")`; then
-			echo -en " $RESLINE\r\n" >&10
+			if `grep -q "<value>" <(echo "$RESLINE")`; then
+				RESLINE=`sed -e 's/<[^>]*>//g' <(echo "$RESLINE")`
+				echo -en " $RESLINE\r\n" >&10
+			fi
 		fi
 	done
-	rm $TMP
+	rm $TMP $TMP1
 	return
 }
 

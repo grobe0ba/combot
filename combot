@@ -3,7 +3,7 @@
 #combot is licensed under a (http://creativecommons.org/licenses/by-sa/4.0/) Creative Commons Attribution-ShareAlike 4.0 International License. See LICENSE.
 
 ROOM=botdev
-PORT=64456
+PORT=64457
 
 if [ -e comsock ]; then rm comsock; fi
 
