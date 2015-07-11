@@ -6,7 +6,7 @@ function msg
 	RLINE=$1
 
 	PERSON=$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]@")
-	LINE=$(echo "$LINE" | cut -d' ' -f2-)
+	LINE=$(echo "$LINE" | cut -d' ' -f2- | sed -e 's/^  *//' | tr -d "[:cntrl:]")
 
 	if [ "$PERSON" == "$OWNER" ];
 	then
