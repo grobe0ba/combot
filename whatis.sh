@@ -6,20 +6,13 @@ function whatis_add()
     WHAT="$(basename "${WHAT}")"
     INF="$(echo "${1}" | cut -d' ' -f2-)"
 
-    for p in $(xargs < ./wadd);
-    do
-	if [[ "${PERSON}" == "${p}" || "${PERSON}" == "${WHAT}" ]];
-	then
-	    echo "${INF}" > "whatis/${WHAT}"
-	    if [ -e "./whatis/${WHAT}" ];
-	    then
-	    	msg_out "WHATIS for ${WHAT} stored."
-	    else
-		msg_out "Unable to store WHATIS."
-	    fi
-	    break
-	fi
-    done
+    echo "${INF}" > "whatis/${WHAT}"
+    if [ -e "./whatis/${WHAT}" ];
+    then
+	msg_out "WHATIS for ${WHAT} stored."
+    else
+	msg_out "Unable to store WHATIS."
+    fi
 }
 
 function whatis_list()
