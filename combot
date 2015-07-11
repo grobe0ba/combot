@@ -86,7 +86,7 @@ sleep 1;
 while `kill -s 0 $PID`
 do
 	read -u 10 LINE
-	LINE=`echo "$LINE" | killcolor`
+	LINE=`echo "$LINE" | sed -e 's/\e\[?.*?[\@-~]//g'`
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
 	echo "$LINE"
 	if `grep -q grobe0ba <(echo "$LINE")`; then
