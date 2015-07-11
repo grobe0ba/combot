@@ -32,6 +32,6 @@ function whois_list()
 	INF="$(cat "./whois/${WHO}")"
 	msg_out "${INF}"
     else
-	msg_out "I don't know who ${WHO} is,  probably a societal reject or something."
+	msg_out "I don't know who ${WHO} is, probably a societal reject or something."
     fi
 }
