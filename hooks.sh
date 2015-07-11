@@ -83,8 +83,8 @@ function process_hooks
 	echo "$PERSON ordered $COMMAND - $EXTRA"
 
 	case "$COMMAND" in
-		xchatx)
-			#chat "$EXTRA" "$PERSON"
+		chat)
+			chat "$EXTRA" "$PERSON"
 			DIDCHAT=1
 			;;
 		msg)
