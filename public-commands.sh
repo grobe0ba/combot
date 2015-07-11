@@ -34,8 +34,8 @@ case "${COMMAND}" in
 	MSG_SENT=1
 	;;
     wadd)
-	#	whois_add "${ARGUMENTS}";
-	msg_out "Please contact grobe0ba for cvs information to modify WHOIS database."
+	whois_add "${ARGUMENTS}";
+	#msg_out "Please contact grobe0ba for cvs information to modify WHOIS database."
 	;;
     whois)
 	whois_list "${ARGUMENTS}";
