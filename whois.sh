@@ -3,7 +3,7 @@
 function whois_add()
 {
     WHO="$(echo "${1}" | cut -d' ' -f1)"
-    WHO="${WHO#*/}"
+    WHO="$(basename "${WHO}")"
     INF="$(echo "${1}" | cut -d' ' -f2-)"
 
     for p in $(xargs < ./wadd);
@@ -25,7 +25,7 @@ function whois_add()
 function whois_list()
 {
     WHO="$(echo "${1}" | cut -d' ' -f1)"
-    WHO="${WHO#*/}"
+    WHO="$(basename "${WHO}")"
     
     if [ -e "./whois/${WHO}" ];
     then
