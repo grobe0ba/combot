@@ -2,8 +2,8 @@
 
 #combot is licensed under a (http://creativecommons.org/licenses/by-sa/4.0/) Creative Commons Attribution-ShareAlike 4.0 International License. See LICENSE.
 
-ROOM=bar
-PORT=64455
+ROOM=botdev
+PORT=64456
 
 if [ -e comsock ]; then rm comsock; fi
 
@@ -30,6 +30,7 @@ function pubmsg
 function msg
 {
 	LINE=$1
+	RLINE=$1
 	PERSON=`echo "$LINE" | gcut -d ' ' -f 1 | sed -e 's/://'`
 	LINE=`echo "$LINE" | gcut -d' ' -f 1 --complement`
 
@@ -64,7 +65,7 @@ function msg
 		esac
 	fi
 	. $HOME/src/scripts/commode/hooks
-	process_hooks "$LINE"
+	process_hooks "$RLINE"
 	return
 }
 
