@@ -10,7 +10,12 @@ function whois_add()
 	if [ "${PERSON}" == "${p}" ];
 	then
 	    echo "${INF}" > "whois/${WHO}"
-	    msg_out "WHOIS for ${WHO} stored."
+	    if [ -e "./whois/${WHO}" ];
+	    then
+	    	msg_out "WHOIS for ${WHO} stored."
+	    else
+		msg_out "Unable to store WHOIS."
+	    fi
 	    break
 	fi
     done
