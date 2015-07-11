@@ -25,6 +25,11 @@ function msg
 	. ./mute-handler.sh
     fi
 
+    if $(echo "${LINE}" | egrep -q '^FLUSH:');
+    then
+	echo -en "Fapprove\r\n" >&10
+    fi
+
     return
 }
 
