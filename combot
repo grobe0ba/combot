@@ -50,6 +50,9 @@ function msg
 				MSG=`echo "$LINE" | gcut -d ' ' -f 1,2,3 --complement`
 				echo -en "s$TO\n$MSG\n" >&10
 				;;
+			emote)
+				echo -en "e$EXTRA\n\n" >&10
+				;;
 			go)
 				echo -en "g$EXTRA\n\n" >&10;
 				;;
