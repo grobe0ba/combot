@@ -15,7 +15,7 @@ function msg
 	. ./public-commands.sh
     fi
 
-    if $(echo "${LINE}" | grep -q '^KICK:');
+    if $(echo "${LINE}" | egrep -q '^KICK:');
     then
 	. ./kick-handler.sh
     fi
