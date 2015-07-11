@@ -1,5 +1,5 @@
 . $HOME/src/scripts/commode/messages.sh
-. $HOME/src/scripts/commode/geturban.sh
+#. $HOME/src/scripts/commode/geturban.sh
 
 function allchat
 {
@@ -134,7 +134,8 @@ function process_hooks
 			DIDMSG=1
 			;;
 		ud)
-			geturban "$EXTRA" &
+			OLINE=`lynx --source http://www.urbandictionary.com/define.php?term="$EXTRA" | grep -e "og:description" | sed -e "s/<meta content=\'//" -e "s/' name='Description' property='og:description'>//"`
+			echo -en " $OLINE\r\n" >&10
 			;;
 	esac
 
