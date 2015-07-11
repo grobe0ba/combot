@@ -36,7 +36,7 @@ function SCARD
 	echo -en "SCARD $KEY\r\n" >&16
 	to_tmp
 
-	echo `grep "^:" $TMP | sed -e 's/^://'`
+	echo `grep "^:" $TMP | sed -e 's/^://' | tr -cd '[:alnum:]'`
 	rm $TMP
 }
 
@@ -62,7 +62,7 @@ function SPOP
 	echo -en "SPOP $KEY\r\n" >&16
 	to_tmp
 	
-	echo `tail -n1 $TMP`
+	echo `tail -n1 $TMP | tr -cd '[:alnum"]'`
 
 	rm $TMP
 }
@@ -89,7 +89,7 @@ function HGET
 	echo -en "HGET $KEY $FIELD\r\n" >&16
 	to_tmp
 
-	echo `tail -n $TMP`
+	echo `tail -n $TMP | tr -cd '[:alnum:]'`
 }
 
 function HDEL
