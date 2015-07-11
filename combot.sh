@@ -1,9 +1,9 @@
-#!/usr/local/bin/bash
+#!/usr/pkg/bin/bash
 
 function cleanup
 {
     echo Bailing out...
-    kill $SOCAT_PID
+    kill -9$SOCAT_PID
     BAIL=1
 }
 trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
@@ -13,7 +13,7 @@ trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
 . ./interface.sh
 
 #Establish PTY->TCP socket link using socat
-socat exec:'ssh -t gropebot@faeroes.sdf.org com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
+socat exec:'ssh -t bag@faeroes com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
 #Grab PID for socat for loop monitoring
 export SOCAT_PID=$!
 

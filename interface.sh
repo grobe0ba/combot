@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/pkg/bin/bash
 
 function msg
 {
@@ -13,6 +13,11 @@ function msg
 	. ./owner-commands.sh
     else
 	. ./public-commands.sh
+    fi
+
+    if $(echo "$LINE" | grep -q '^KICK:');
+    then
+	. ./kick-handler.sh
     fi
 
     return
@@ -46,4 +51,9 @@ function ch_sw
 {
     echo -en "g$1\r\n" >&10
     return
+}
+
+function kick_approve
+{
+    echo -en "kapprove\r\n" >&10
 }

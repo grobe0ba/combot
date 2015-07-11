@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/pkg/bin/bash
 
 function send_message
 {
@@ -10,7 +10,7 @@ function send_message
 
 function get_message
 {
-    if $(find ./store | grep -q $PERSON);
+    if $(find ./store | grep -E -q $PERSON);
     then
 	cat ./store/$PERSON |
 	    while read MSGLINE
