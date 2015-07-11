@@ -1,6 +1,6 @@
 function connect
 {
-	exec 16<>/dev/tcp/localhost/6739
+	exec 16<>/dev/tcp/localhost/6379
 }
 
 function disconnect

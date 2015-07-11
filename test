@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-. ./messages
+. ./messages.sh
 
 connect
 getmessages grobe0ba
