@@ -2,7 +2,7 @@
 
 function msg
 {
-    if [ -z "${LINE}" ];
+    if [ -n "${LINE}" ];
     then
 	echo "${LINE}"
 	echo "${LINE}" >> commode.log
