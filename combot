@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
-ROOM=botdev
-PORT=64451
+ROOM=bar
+PORT=64452
 
 if [ -e comsock ]; then rm comsock; fi
 
@@ -90,6 +90,17 @@ do
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
 	if `grep -q grobe0ba <(echo "$LINE")`; then
 		send_ping "$LINE"
+	fi
+	if `grep -q joined <(echo "$LINE")`; then
+		if `grep -q elita`; then
+			echo -en "egrabs elita's ass\n\n" >&10
+		fi
+		if `grep -q felix`; then
+			echo -en "emotorboats felix tits\n\n" >&10
+		fi
+		if `grep -q hapiworm`; then
+			echo -en "ekisses hapiworm under the starlight\n\n" >&10
+		fi
 	fi
 	msg "$LINE"
 done
