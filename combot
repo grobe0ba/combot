@@ -1,7 +1,7 @@
 #!/usr/local/bin/bash
 
-ROOM=botdev
-PORT=64452
+ROOM=bar
+PORT=64453
 
 if [ -e comsock ]; then rm comsock; fi
 
@@ -46,8 +46,8 @@ function msg
 				echo -en " $EXTRA\n\n\n" >&10
 				;;
 			msg)
-				TO=`echo "$LINE" | gcut -d ' ' -f 1,2`
-				MSG=`echo "$LINE" | gcut -d ' ' -f 1,2 --complement`
+				TO=`echo "$LINE" | gcut -d ' ' -f 2,3`
+				MSG=`echo "$LINE" | gcut -d ' ' -f 1,2,3 --complement`
 				echo -en "s$TO\n$MSG\n" >&10
 				;;
 			go)
