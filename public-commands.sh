@@ -27,7 +27,7 @@ case "${COMMAND}" in
 	msg_out "The CVS repository is mirrored at https://github.com/grobe0ba/combot"
 	;;
     commands)
-	msg_out "Public commands can be found in the case statement at https://github.com/grobe0ba/combot/blob/master/public-commands.sh";
+	msg_out "Public commands can be found at https://github.com/grobe0ba/combot/wiki/Public-Bot-Commands"
 	;;
     msg)
 	send_message "${ARGUMENTS}";
