@@ -8,7 +8,7 @@ function msg
 	PERSON=$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]")
 	LINE=$(echo "$LINE" | cut -d' ' -f2-)
 
-	if [ "$PERSON" == "grobe0ba@faeroes" ];
+	if [ "$PERSON" == "$OWNER" ];
 	then
 		. ./owner-commands.sh
 	else

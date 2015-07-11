@@ -4,4 +4,4 @@ PORT=64005
 
 ROOM=roof
 
-OWNER="grobe0ba@faeroes"
+OWNER="grobe0ba@sdf"
