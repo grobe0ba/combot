@@ -143,6 +143,10 @@ function process_hooks
 	#	allchat "$EXTRA" "$PERSON" &
 	#fi
 
+	if `grep -q "nullogic spins" <(echo "$LINE")`; then
+		echo -en "etrips nullogic\r\n" >&10
+	fi
+
 	if `grep -q joined <(echo "$LINE")`; then
 		if `grep -q mjt <(echo "$LINE")`; then
 			echo -en "eslaps mjt about the face with a large, wet, trout\r\n" >&10
