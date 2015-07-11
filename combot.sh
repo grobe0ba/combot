@@ -4,8 +4,8 @@
 #This license supercedes all previous licenses used in this project, and applies to ALL previous commits to this repository.
 #Certain files in the project are licensed under the GNU GPLv3, and are specified as such in the files themselves.
 
-ROOM=bar
-PORT=64463
+ROOM=bot
+PORT=64469
 
 if [ -e comsock ]; then rm comsock; fi
 
