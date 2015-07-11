@@ -5,7 +5,7 @@
 #Certain files in the project are licensed under the GNU GPLv3, and are specified as such in the files themselves.
 
 ROOM=bar
-PORT=64461
+PORT=64462
 
 if [ -e comsock ]; then rm comsock; fi
 
