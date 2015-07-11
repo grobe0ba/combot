@@ -7,7 +7,7 @@ function whois_add()
 
     for p in $(xargs < ./wadd);
     do
-	if [ "${PERSON}" == "${p}" ];
+	if [[ "${PERSON}" == "${p}" || "${PERSON}" == "${WHO}" ]];
 	then
 	    echo "${INF}" > "whois/${WHO}"
 	    if [ -e "./whois/${WHO}" ];
