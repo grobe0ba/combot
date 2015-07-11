@@ -4,7 +4,7 @@
 #This license supercedes all previous licenses used in this project, and applies to ALL previous commits to this repository.
 
 ROOM=bar
-PORT=64460
+PORT=64461
 
 if [ -e comsock ]; then rm comsock; fi
 

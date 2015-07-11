@@ -148,13 +148,13 @@ function process_hooks
 			echo -en "eslaps mjt about the face with a large, wet, trout\r\n" >&10
 		fi
 		if `grep -q elita <(echo "$LINE")`; then
-			echo -en "egrabs elita's ass\r\n" >&10
+			echo -en "eaffectionately fondles elita's tit\r\n" >&10
 		fi
 		if `grep -q felix <(echo "$LINE")`; then
 			echo -en "emotorboats felix tits\r\n" >&10
 		fi
 		if `grep -q hapiworm <(echo "$LINE")`; then
-			echo -en "ekisses hapiworm under the starlight\r\n" >&10
+			echo -en "egrabs hapiworm\s ass\r\n" >&10
 		fi
 
 	fi
