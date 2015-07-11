@@ -5,7 +5,7 @@ function msg
 	LINE=$1
 	RLINE=$1
 
-	PERSON=$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]")
+	PERSON=$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]@")
 	LINE=$(echo "$LINE" | cut -d' ' -f2-)
 
 	if [ "$PERSON" == "$OWNER" ];
