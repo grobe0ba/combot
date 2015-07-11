@@ -22,9 +22,8 @@ echo -en "g$ROOM\r\n" >&10
 sleep 1;
 while $(kill -s 0 $PID)
 do
-	. ./config.sh
 	read -u 10 LINE
-	LINE=$(echo '$LINE' | ./killcolor)
-	LINE=$(echo '$LINE' | sed -e 's/$(.*)//' -e 's/`.*`//')
+	. ./config.sh
+	LINE=$(echo '$LINE' | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
 	msg "$LINE"
 done
