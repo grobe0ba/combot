@@ -9,7 +9,12 @@ for p in $(xargs < ./kickers);
 do
     if [ "$(echo "${REQ}" | cut -d'@' -f1)" == "${p}" ];
     then
-	kick_approve &
+	if [[ "${WHO}" != "${OWNER}" && "${WHO}" != "bag@faeroes" ]];
+	then
+	    kick_approve &
+	else
+	    msg_out "Nope, not kicking him. Do thine own dirty work!"
+	fi
 	break
     fi
 done
