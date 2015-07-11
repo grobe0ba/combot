@@ -34,7 +34,7 @@ EOF
 	cat <&15 |
 	while read RESLINE
 	do
-		if $(echo "$RESLINE" | grep -qve "^HTTP/1.0" | grep -qve "^Server:" | grep -qve "^Date:" | grep -qve "^Content"); then
+		if $(echo "$RESLINE" | grep -qve "^HTTP/1.0" -e "^Server:" -e "^Date:" -e "^Content"); then
 			if $(echo "$RESLINE" | grep -q "<value>"); then
 				RESLINE=$(echo "$RESLINE" | sed -e 's/<[^>]*>//g')
 				echo -en " $RESLINE\r\n" >&10
