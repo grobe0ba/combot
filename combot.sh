@@ -24,6 +24,6 @@ while $(kill -s 0 $PID)
 do
 	read -u 10 LINE
 	. ./config.sh
-	LINE=$(echo '$LINE' | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
+	LINE=$(echo "$LINE" | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
 	msg "$LINE"
 done
