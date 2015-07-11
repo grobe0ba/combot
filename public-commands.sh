@@ -24,10 +24,10 @@ case "${COMMAND}" in
 	urbandict_lookup "${ARGUMENTS}";
 	;;
     source)
-	msg_out "My source code is at: https://github.com/grobe0ba/scripts/tree/master/commode";
+	msg_out "My source code is at: CVSROOT=:pserver:anoncvs@iceland.sdf.org:/arpa/gm/g/grobe0ba/cvs in the combot module, or https://github.com/grobe0ba/combot";
 	;;
     commands)
-	msg_out "Public commands can be found in the case statement at https://github.com/grobe0ba/scripts/blob/master/commode/public-commands.sh";
+	msg_out "Public commands can be found in the case statement at https://github.com/grobe0ba/combot/blob/master/public-commands.sh";
 	;;
     msg)
 	send_message "${ARGUMENTS}";
