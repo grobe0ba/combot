@@ -4,6 +4,7 @@
 . ./urbandictionary.sh
 #. ./chat_bot.sh
 . ./message_store.sh
+. ./whois.sh
 
 COMMAND="$(echo "${LINE}" | cut -d' ' -f1)"
 ARGUMENTS="$(echo "${LINE}" | cut -d' ' -f2-)"
