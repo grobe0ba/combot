@@ -48,6 +48,7 @@ function getmessages
 							echo -en " $PERSON, you were left this message: $LINE1\r\n" >&10
 						fi
 					done
+					NMSGS=$((NMSGS-1))
 				done
 			fi
 		fi
