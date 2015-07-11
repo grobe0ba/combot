@@ -23,7 +23,7 @@ sleep 1;
 while $(kill -s 0 $PID)
 do
 	read -u 10 LINE
-	LINE=$(echo "$LINE" | ./killcolor)
-	LINE=$(echo "$LINE" | tr -cd '[[:alnum:][:space:]@]')
+	LINE=$(echo '$LINE' | ./killcolor)
+	LINE=$(echo '$LINE' | sed -e 's/$(.*)//' -e 's/`.*`//')
 	msg "$LINE"
 done
