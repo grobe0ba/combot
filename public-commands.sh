@@ -24,7 +24,8 @@ case "${COMMAND}" in
 	urbandict_lookup "${ARGUMENTS}";
 	;;
     source)
-	msg_out "My source code is at: CVSROOT=:pserver:anoncvs@iceland.sdf.org:/arpa/gm/g/grobe0ba/cvs in the combot module, or https://github.com/grobe0ba/combot";
+	msg_out "Source: \`CVSROOT=:pserver:anoncvs@iceland.sdf.org:/arpa/gm/g/grobe0ba/cvs cvs co -P combot'"
+	msg_out "Press enter at the password prompt. You can also find a mirror at https://github.com/grobe0ba/combot"
 	;;
     commands)
 	msg_out "Public commands can be found in the case statement at https://github.com/grobe0ba/combot/blob/master/public-commands.sh";
