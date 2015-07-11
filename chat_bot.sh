@@ -2,22 +2,18 @@
 
 function do_chat
 {
-	EXTRA=$1
-	PERSON=$2
 	TMP=$(mktemp chat.XXXXX)
 	TMP1=$(mktemp chat.XXXXX)
-	SESNAM=$(echo "$PERSON" | tr -cd "[:alnum:]")
-	EXTRA=$(echo "$EXTRA" | tr -cd "[[:alnum:][:space:]]")
 	cat > $TMP <<EOF
 <?xml version='1.0'?>
 <methodCall>
 	<methodName>respond</methodName>
 	<params>
 	<param>
-	<value>$EXTRA</value>
+	<value>$ARGUMENTS</value>
 	</param>
 	<param>
-	<value>$SESNAM</value>
+	<value>$PERSON</value>
 	</param>
 	</params>
 </methodCall>
