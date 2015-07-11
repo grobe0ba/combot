@@ -5,7 +5,7 @@ ARGUMENTS=$(echo "$LINE" | cut -d' ' -f2-)
 
 case "$COMMAND" in
 	quit)
-		key_out q;
+		cleanup;
 		;;
 	say)
 		msg_out "$ARGUMENTS";
