@@ -6,7 +6,12 @@ function send_message
     MSG="$(echo "${1}" | cut -d' ' -f2-)"
 
     echo "${RECIP}, message from ${PERSON}: ${MSG}" >> "./store/${RECIP}"
-    msg_out "Message for ${RECIP} stored."
+    if [ -e "./store/${RECIP}" ];
+    then
+	msg_out "Message for ${RECIP} stored."
+    else
+	msg_out "Unable to store message for ${RECIP}."
+    fi
 }
 
 function get_message
