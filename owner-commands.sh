@@ -19,10 +19,6 @@ case "${COMMAND}" in
     reload)
 	. ./interface.sh;
 	;;
-    cpass)
-	key_out "p";
-	key_out "";
-	;;
     '?')
 	echo -en "sgrobe0ba@faeroes\r\nIncorrect function\r\n" >&10
 	;;
