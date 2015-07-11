@@ -94,7 +94,8 @@ sleep 1;
 while `kill -s 0 $PID`
 do
 	read -u 10 LINE
-	LINE=`echo "$LINE" | killcolor`
+	#LINE=`echo "$LINE" | killcolor`
+	LINE=`echo "$LINE" | sed -e "s,\x1B\[[0-9;]*[a-zA-Z],,g"`
 	LINE=`echo "$LINE" | tr -cd '[[:alnum:][:space:]@]'`
 	if `echo "$LINE" | grep -q grobe0ba`; then
 		send_ping "$LINE"
