@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-#combot is licensed under a (http://creativecommons.org/licenses/by-sa/4.0/) Creative Commons Attribution-ShareAlike 4.0 International License. See LICENSE.
+#combot is licensed under the MIT License (http://opensource.org/licenses/MIT). See LICENSE for details.
 
 ROOM=bar
 PORT=64460
