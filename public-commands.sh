@@ -30,7 +30,7 @@ case "${COMMAND}" in
 	whois_list "${ARGUMENTS}";
 	;;
     whoami)
-	whois_list "$(echo "${ARGUMENTS}" | cut -d' ' -f1)"
+	whois_list "${PERSON}";
 	;;
 esac
 
