@@ -17,5 +17,6 @@ function get_message
 		do
 			msg_out "$MSGLINE"
 		done
+		rm ./store/$PERSON
 	fi
 }
