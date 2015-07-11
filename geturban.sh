@@ -15,9 +15,10 @@ function geturban
 			unset DOPRNT
 		fi
 		if [ -n "$DOPRNT" ]; then
-			$HOME/src/scripts/commode/stripHTML.sed <(echo "$CLINE" | sed -s "s/<br[/]*>/ /g" | tr -d '\n') | tr -d '\n' | tr -cd '[:print:]'
-			echo -en " "
+			echo -en " " >&10
+			$HOME/src/scripts/commode/stripHTML.sed <(echo "$CLINE" | sed -e "s/<br[/]*>/ /g" | tr -d '\n') | tr -d '\n' | tr -cd '[:print:]' >&10
+			echo -en "\r\n" >&10
 		fi
 	done
-	echo -en "\n"
+	exit
 }

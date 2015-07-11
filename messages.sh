@@ -21,4 +21,5 @@ function getmessage
 			rm $HOME/howie/msgs/$SESNAM
 		fi
 	fi
+	exit
 }

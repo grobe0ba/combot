@@ -134,8 +134,7 @@ function process_hooks
 			DIDMSG=1
 			;;
 		ud)
-			OLINE=`geturban $EXTRA`
-			echo -en " $OLINE\r\n" >&10
+			geturban "$EXTRA" &
 			;;
 	esac
 
