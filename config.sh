@@ -2,7 +2,7 @@
 
 PORT=64016
 
-ROOM=panopticon
+ROOM=manupticon
 
 OWNER="grobe0ba@faeroes"
 
