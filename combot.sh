@@ -2,9 +2,9 @@
 
 function cleanup
 {
-	echo Bailing out...
-	kill $SOCAT_PID
-	BAIL=1
+    echo Bailing out...
+    kill $SOCAT_PID
+    BAIL=1
 }
 trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
 
@@ -32,8 +32,8 @@ echo -en "g$ROOM\r\n" >&10
 sleep 3;
 while $(kill -s 0 $SOCAT_PID)
 do
-	read -u 10 LINE
-	. ./config.sh
-	LINE=$(echo "$LINE" | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
-	msg "$LINE"
+    read -u 10 LINE
+    . ./config.sh
+    LINE=$(echo "$LINE" | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
+    msg "$LINE"
 done
