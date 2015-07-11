@@ -5,6 +5,7 @@
 #. ./chat_bot.sh
 . ./message_store.sh
 . ./whois.sh
+. ./whatis.sh
 
 LINE="$(echo "${LINE}" | sed -E  's/(^[ ]*bag[: ,;]*)(.*)/\2/')"
 
