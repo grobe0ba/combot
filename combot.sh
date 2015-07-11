@@ -20,10 +20,10 @@ echo -en "g$ROOM\r\n" >&10
 
 #Wait again for everything to settle down
 sleep 1;
-while `kill -s 0 $PID`
+while $(kill -s 0 $PID)
 do
 	read -u 10 LINE
-	LINE=$(echo "$LINE" | killcolor)
+	LINE=$(echo "$LINE" | ./killcolor)
 	LINE=$(echo "$LINE" | tr -cd '[[:alnum:][:space:]@]')
 	msg "$LINE"
 done
