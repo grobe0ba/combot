@@ -1,0 +1,18 @@
+#!/usr/pkg/bin/bash
+
+if [ -e comsock ]; then rm comsock; fi
+
+function cleanup
+{
+	echo Bailing out...
+	pkill socat
+	pkill cat
+	BAIL=1
+}
+trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
+
+socat exec:'com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:65444,bind=127.0.0.1,fork &
+sleep 2;
+exec 10<>/dev/tcp/127.0.0.1/65444
+cat <&10 &
+cat >&10
