@@ -1,6 +1,7 @@
 #!/usr/local/bin/bash
 
 #combot is licensed under the MIT License (http://opensource.org/licenses/MIT). See LICENSE for details.
+#This license supercedes all previous licenses used in this project, and applies to ALL previous commits to this repository.
 
 ROOM=bar
 PORT=64460
