@@ -24,7 +24,7 @@ case "$COMMAND" in
 		;;
 esac
 
-if [ -z $MSG_SENT ];
-then
-	get_message &
-fi
+#if [ -z $MSG_SENT ];
+#then
+#	get_message &
+#fi
