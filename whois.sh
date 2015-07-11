@@ -1,0 +1,30 @@
+#!/usr/pkg/bin/bash
+
+function whois_add()
+{
+    WHO="$(echo "${1}" | cut -d' ' -f1)"
+    INF="$(echo "${1}" | cut -d' ' -f2-)"
+
+    for p in $(xargs < ./wadd);
+    do
+	if [ "${PERSON}" == "${p}" ];
+	then
+	    echo "${INF}" > "whois/${WHO}"
+	    msg_out "WHOIS for ${WHO} stored."
+	    break
+	fi
+    done
+}
+
+function whois_list()
+{
+    WHO="$(echo "${1}" | cut -d' ' -f1)"
+    
+    if [ -e "./whois/${WHO}" ];
+    then
+	INF="$(cat "./whois/${WHO}")"
+	msg_out "${INF}"
+    else
+	msg_out "I don't know who that, probably a nub or something."
+    fi
+}

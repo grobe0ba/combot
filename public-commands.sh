@@ -22,6 +22,12 @@ case "${COMMAND}" in
 	send_message "${ARGUMENTS}";
 	MSG_SENT=1
 	;;
+    wadd)
+	whois_add "${ARGUMENTS}";
+	;;
+    whois)
+	whois_list "${ARGUMENTS}";
+	;;
 esac
 
 if [ -z ${MSG_SENT} ];

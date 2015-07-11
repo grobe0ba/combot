@@ -2,10 +2,11 @@
 
 function send_message
 {
-    RECIP=$(echo "$1" | cut -d' ' -f1)
-    MSG=$(echo "$1" | cut -d' ' -f2-)
+    RECIP="$(echo "${1}" | cut -d' ' -f1)"
+    MSG="$(echo "${1}" | cut -d' ' -f2-)"
 
-    echo "$RECIP, message from $PERSON: $MSG" >> ./store/$RECIP
+    echo "${RECIP}, message from ${PERSON}: ${MSG}" >> "./store/${RECIP}"
+    msg_out "Message for ${RECIP} stored."
 }
 
 function get_message
