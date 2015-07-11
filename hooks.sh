@@ -1,4 +1,5 @@
 . $HOME/src/scripts/commode/messages.sh
+. $HOME/src/scripts/commode/geturban.sh
 
 function allchat
 {
@@ -131,6 +132,10 @@ function process_hooks
 			EX=`gcut -d ' ' -f1 --complement <(echo "$EXTRA")`
 			addmessage "$PERS" "$EX" "$PERSON"
 			DIDMSG=1
+			;;
+		ud)
+			OLINE=`geturban $EXTRA`
+			echo -en " $OLINE\r\n" >&10
 			;;
 	esac
 
