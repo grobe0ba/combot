@@ -42,42 +42,71 @@ function msg
     return
 }
 
+function getlock
+{
+    while ! shlock -f "${LOCKFILE}" -p ${RANDOM}
+    then
+	echo "" >/dev/null
+    done
+}
+
+function endlock
+{
+    rm "${LOCKFILE}"
+}
+
 function key_out
 {
+    getlock
     echo -en "${1}\r\n" >&10
+    endlock
     return
 }
 
 function msg_out
 {
+    getlock
     echo -en " ${1}\r\n" >&10
+    endlock
     return
 }
 
 function pm_out
 {
+    getlock
     echo -en "s${1}\r\n${2}\r\n" >&10
+    endlock
     return
 }
 
 function emote
 {
+    getlock
     echo -en "e${1}\r\n" >&10
+    endlock
     return
 }
 
 function ch_sw
 {
+    getlock
     echo -en "g${1}\r\n" >&10
+    endlock
     return
 }
 
 function kick_approve
 {
+    getlock
     echo -en "kapprove\r\n" >&10
+    endlock
+    return
 }
 
 function mute_approve
 {
+    getlock
     echo -en "mapprove\r\n" >&10
+    endlock
+    return
 }

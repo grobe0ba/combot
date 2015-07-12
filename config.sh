@@ -6,3 +6,4 @@ ROOM=manupticon
 
 OWNER="grobe0ba@faeroes"
 
+LOCKFILE=./.WRITE_LOCK
