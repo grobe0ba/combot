@@ -35,5 +35,5 @@ do
    read -u 10 -t 5 LINE
     . ./config.sh
     LINE=$(echo "$LINE" | ./killcolor | sed -e 's/$(.*)//' -e 's/`.*`//')
-    msg "$LINE" &
+    msg "$LINE"
 done
