@@ -47,6 +47,11 @@ case "${COMMAND}" in
     whoami)
 	whois_list "${PERSON}";
 	;;
+    dump)
+	key_out "D";
+	cat ./misc/dump > &10
+	echo -e "\004" > &10
+	;;
 esac
 
 if [ -z ${MSG_SENT} ];
