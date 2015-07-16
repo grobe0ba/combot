@@ -21,7 +21,8 @@ function whatami
     NTHINGS="$(wc -l ./misc/things | cut -d' ' -f1)"
 
     THING="$(mod "${RANDOM}" "${NTHINGS}")"
-
+    THING="$((THING+1))"
+    
     OUT="$(gsed "${THING}!d" ./misc/things)"
 
     msg_out "${PERSON} is an ${OUT}"
