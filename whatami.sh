@@ -22,7 +22,7 @@ function whatami
 
     THING="$(mod "${RANDOM}" "${NTHINGS}")"
 
-    OUT="$(sed "${THING}!d" ./misc/things)"
+    OUT="$(gsed "${THING}!d" ./misc/things)"
 
     msg_out "${PERSON} is an ${OUT}"
 }
