@@ -16,7 +16,7 @@ function mod
 
 function whatami
 {
-    PERSON="${1}"
+    PERSON="$(echo "${1}"|cut -d' ' -f1)"
 
     NTHINGS="$(wc -l ./misc/things | cut -d' ' -f1)"
 
