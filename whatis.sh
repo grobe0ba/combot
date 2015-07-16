@@ -25,6 +25,6 @@ function whatis_list()
 	INF="$(cat "./whatis/${WHAT}")"
 	msg_out "${INF}"
     else
-	msg_out "I don't know what ${WHAT} is, but heroin addicts probably use one."
+	msg_out "I don't know what ${WHAT} is, but heroin addicts probably use it."
     fi
 }
