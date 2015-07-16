@@ -6,6 +6,7 @@
 . ./message_store.sh
 . ./whois.sh
 . ./whatis.sh
+. ./whatami.sh
 
 LINE="$(echo "${LINE}" | sed -E  's/(^[ ]*bag[: ,;]*)(.*)/\2/')"
 
@@ -46,6 +47,12 @@ case "${COMMAND}" in
 	;;
     whoami)
 	whois_list "${PERSON}";
+	;;
+    whatami)
+	whatami "${PERSON}";
+	;;
+    whatisp)
+	whatami "${ARGUMENTS}";
 	;;
 esac
 
