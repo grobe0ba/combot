@@ -7,20 +7,14 @@ function whatis_add()
     WHAT="$(echo "${WHAT}" | sha1)"
     INF="$(echo "${1}" | cut -d'|' -f2-)"
 
-    if [ -n "${INF}" ];
+    echo "${INF}" > "whatis/${WHAT}"
+    if [ -e "./whatis/${WHAT}" ];
     then
-	
-	echo "${INF}" > "whatis/${WHAT}"
-	if [ -e "./whatis/${WHAT}" ];
-	then
-	    msg_out "WHATIS for ${OWHAT} stored."
-	else
-	    msg_out "Unable to store WHATIS."
-	fi
+	msg_out "WHATIS for ${OWHAT} stored."
     else
-	msg_out "No description provided. Correct format: wadd item|description"
-	msg_out "Item can have multiple words."
+	msg_out "Unable to store WHATIS."
     fi
+    
 }
 
 function whatis_list()
