@@ -19,36 +19,35 @@ function msg
 	if [ "${PERSON}" == "${p}" ];
 	then
 	    return;
-	fi
+	else    
+
+	    if [ "${PERSON}" == "${OWNER}" ];
+	    then
+		. ./owner-commands.sh
+	    else
+		. ./public-commands.sh
+	    fi
+
+	    if $(echo "${LINE}" | egrep -q '^KICK:');
+	    then
+		if $(echo "${LINE}" | egrep -qv 'no approval');
+		then
+		    . ./kick-handler.sh
+		fi
+	    fi
+
+	    if $(echo "${LINE}" | egrep -q '^MUTE:');
+	    then
+		. ./mute-handler.sh
+	    fi
+
+	    if $(echo "${LINE}" | egrep -q '^FLUSH:');
+	    then
+		echo -en "Fapprove\r\n" >&10
+	    fi
+
+	    return
     done
-    
-
-    if [ "${PERSON}" == "${OWNER}" ];
-    then
-	. ./owner-commands.sh
-    else
-	. ./public-commands.sh
-    fi
-
-    if $(echo "${LINE}" | egrep -q '^KICK:');
-    then
-	if $(echo "${LINE}" | egrep -qv 'no approval');
-	then
-	    . ./kick-handler.sh
-	fi
-    fi
-
-    if $(echo "${LINE}" | egrep -q '^MUTE:');
-    then
-	. ./mute-handler.sh
-    fi
-
-    if $(echo "${LINE}" | egrep -q '^FLUSH:');
-    then
-	echo -en "Fapprove\r\n" >&10
-    fi
-
-    return
 }
 
 function key_out
