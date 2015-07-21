@@ -14,40 +14,45 @@ function msg
     PERSON="$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]@")"
     LINE="$(echo "${LINE}" | cut -d' ' -f2- | sed -e 's/^  *//' | tr -d "[:cntrl:]")"
 
+    ABUSE=0
     for p in $(xargs < ./abuse);
     do
 	if [ "${PERSON}" == "${p}" ];
 	then
-	    return;
-	else    
-
-	    if [ "${PERSON}" == "${OWNER}" ];
-	    then
-		. ./owner-commands.sh
-	    else
-		. ./public-commands.sh
-	    fi
-
-	    if $(echo "${LINE}" | egrep -q '^KICK:');
-	    then
-		if $(echo "${LINE}" | egrep -qv 'no approval');
-		then
-		    . ./kick-handler.sh
-		fi
-	    fi
-
-	    if $(echo "${LINE}" | egrep -q '^MUTE:');
-	    then
-		. ./mute-handler.sh
-	    fi
-
-	    if $(echo "${LINE}" | egrep -q '^FLUSH:');
-	    then
-		echo -en "Fapprove\r\n" >&10
-	    fi
-
-	    return
+	    ABUSE=1
+	else
+	    ABUSE=0
+	fi
     done
+    if [ "${ABUSE}" == 0 ];
+    then
+	if [ "${PERSON}" == "${OWNER}" ];
+	then
+	    . ./owner-commands.sh
+	else
+	    . ./public-commands.sh
+	fi
+
+	if $(echo "${LINE}" | egrep -q '^KICK:');
+	then
+	    if $(echo "${LINE}" | egrep -qv 'no approval');
+	    then
+		. ./kick-handler.sh
+	    fi
+	fi
+
+	if $(echo "${LINE}" | egrep -q '^MUTE:');
+	then
+	    . ./mute-handler.sh
+	fi
+
+	if $(echo "${LINE}" | egrep -q '^FLUSH:');
+	then
+	    echo -en "Fapprove\r\n" >&10
+	fi
+
+	return
+    fi
 }
 
 function key_out
