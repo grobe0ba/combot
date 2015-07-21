@@ -14,6 +14,15 @@ function msg
     PERSON="$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]@")"
     LINE="$(echo "${LINE}" | cut -d' ' -f2- | sed -e 's/^  *//' | tr -d "[:cntrl:]")"
 
+    for p in $(xargs < ./abuse);
+    do
+	if [ "${PERSON}" == "${p}" ];
+	then
+	    return;
+	fi
+    done
+    
+
     if [ "${PERSON}" == "${OWNER}" ];
     then
 	. ./owner-commands.sh
