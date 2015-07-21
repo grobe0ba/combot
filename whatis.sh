@@ -7,14 +7,17 @@ function whatis_add()
     WHAT="$(echo "${WHAT}" | sha1)"
     INF="$(echo "${1}" | cut -d'|' -f2-)"
 
-    echo "${INF}" > "whatis/${WHAT}"
-    if [ -e "./whatis/${WHAT}" ];
+    if $(echo "${INF}" | grep -qv wadd);
     then
-	msg_out "WHATIS for ${OWHAT} stored."
-    else
-	msg_out "Unable to store WHATIS."
-    fi
-    
+	
+	echo "${INF}" > "whatis/${WHAT}"
+	if [ -e "./whatis/${WHAT}" ];
+	then
+	    msg_out "WHATIS for ${OWHAT} stored."
+	else
+	    msg_out "Unable to store WHATIS."
+	fi
+    fi    
 }
 
 function whatis_list()
