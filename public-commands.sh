@@ -7,7 +7,8 @@
 . ./whois.sh
 . ./whatis.sh
 
-LINE="$(echo "${LINE}" | sed -E  's/(^[ ]*bag[: ,;]*)(.*)/\2/')"
+SBOT="$(echo "${BOT}" | cut -d'@' -f1)"
+LINE="$(echo "${LINE}" | sed -E  "s/(^[ ]*${SBOT}[: ,;]*)(.*)/\2/")"
 
 COMMAND="$(echo "${LINE}" | cut -d' ' -f1)"
 ARGUMENTS="$(echo "${LINE}" | cut -d' ' -f2-)"
