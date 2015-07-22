@@ -49,7 +49,7 @@ case "${COMMAND}" in
 	whois_list "${PERSON}";
 	;;
     version)
-	msg_out "$Id$";
+	msg_out "\$Id$";
 	;;
 esac
 
