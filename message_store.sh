@@ -20,13 +20,16 @@ function send_message
 function get_message
 {
     PERSON="$(basename "${PERSON}")"
-    if [ -e "./store/${PERSON}" ];
+    if [ -n "${PERSON}" ];
     then
-	cat "./store/${PERSON}" |
-	    while read MSGLINE
-	    do
-		msg_out "${MSGLINE}"
-	    done
-	rm "./store/${PERSON}"
+	if [ -e "./store/${PERSON}" ];
+	then
+	    cat "./store/${PERSON}" |
+		while read MSGLINE
+		do
+		    msg_out "${MSGLINE}"
+		done
+	    rm "./store/${PERSON}"
+	fi
     fi
 }
