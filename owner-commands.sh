@@ -19,7 +19,4 @@ case "${COMMAND}" in
     reload)
 	. ./interface.sh;
 	;;
-    '?')
-	echo -en "sgrobe0ba@faeroes\r\nIncorrect function\r\n" >&10
-	;;
 esac
