@@ -13,7 +13,7 @@ trap cleanup SIGTERM SIGKILL SIGQUIT SIGINT
 . ./interface.sh
 
 #Establish PTY->TCP socket link using socat
-socat exec:'ssh -t ${ACCOUNT} com',stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
+socat exec:"ssh -t ${ACCOUNT} com",stderr,pty,ctty,sigquit,sigint,raw,echo=0 TCP-LISTEN:$PORT,bind=127.0.0.1,crnl,fork &
 #Grab PID for socat for loop monitoring
 export SOCAT_PID=$!
 
