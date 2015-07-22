@@ -48,6 +48,9 @@ case "${COMMAND}" in
     whoami)
 	whois_list "${PERSON}";
 	;;
+    version)
+	msg_out "$Id$";
+	;;
 esac
 
 if [ -z ${MSG_SENT} ];
