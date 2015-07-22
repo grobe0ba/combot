@@ -52,7 +52,7 @@ case "${COMMAND}" in
 	whois_list "${PERSON}";
 	;;
     version)
-	msg_out "\$Id$";
+	getversion "${ARGUMENTS}";
 	;;
 esac
 
