@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 function cleanup
 {
     echo Bailing out...

@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 COMMAND="$(echo "${LINE}" | cut -d' ' -f1)"
 ARGUMENTS="$(echo "${LINE}" | cut -d' ' -f2-)"
 

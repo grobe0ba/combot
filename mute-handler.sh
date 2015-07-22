@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 #[20:11:23] KICK: bag@faeroes needs approval to kick grobe0ba@iceland out of library
 
 WHO="$(echo "${LINE}" | cut -d' ' -f7)"

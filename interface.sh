@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 function msg
 {
     if [ -n "${LINE}" ];

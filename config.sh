@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 PORT=64016
 
 ROOM=manupticon

@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 function urbandict_lookup
 {
     RTERM="${1}"

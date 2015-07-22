@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 function send_message
 {
     RECIP="$(echo "${1}" | cut -d' ' -f1)"

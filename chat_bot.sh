@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 function do_chat
 {
     TMP="$(mktemp chat.XXXXX)"

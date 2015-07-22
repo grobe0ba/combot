@@ -1,5 +1,7 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 function whois_add()
 {
     WHO="$(echo "${1}" | cut -d' ' -f1)"

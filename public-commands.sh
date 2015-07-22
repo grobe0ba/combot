@@ -1,11 +1,14 @@
 #!/usr/pkg/bin/bash
 
+# $Id$
+
 #Additional processing functions
 . ./urbandictionary.sh
 #. ./chat_bot.sh
 . ./message_store.sh
 . ./whois.sh
 . ./whatis.sh
+. ./version.sh
 
 SBOT="$(echo "${BOT}" | cut -d'@' -f1)"
 LINE="$(echo "${LINE}" | sed -E  "s/(^[ ]*${SBOT}[: ,;]*)(.*)/\2/")"
