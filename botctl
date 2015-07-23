@@ -1,0 +1,21 @@
+#!/usr/pkg/bin/bash
+
+SVCDIR=/arpa/gm/g/grobe0ba/opt/iceland/service/combot
+
+case "${1}" in
+    start)
+	svc -u "${SVCDIR}"
+	;;
+    stop)
+	svc -d "${SVCDIR}"
+	;;
+    restart)
+	svc -du "${SVCDIR}" "${SVCDIR}"
+	;;
+    status)
+	svstat "${SVCDIR}" | cut -d':' -f2 | sed -e 's/^[ \t]*//'
+	;;
+    kill)
+	svc -td "${SVCDIR}" "${SVCDIR}"
+	;;
+esac
