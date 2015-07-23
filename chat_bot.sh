@@ -20,10 +20,10 @@ function do_chat
 	</params>
 </methodCall>
 EOF
-    echo $TMP
-    SIZE=$(cat $TMP | wc -c | sed -e 's/ *//g')
+    echo "${TMP}"
+    SIZE="$(wc -c < "${TMP}" | sed -e 's/ *//g')"
     exec 15<>/dev/tcp/localhost/65300
-    cat > $TMP1 <<EOF
+    cat > "${TMP1}" <<EOF
 POST / HTTP/1.0
 User-Agent: bash
 Host: localhost

@@ -24,11 +24,10 @@ function get_message
     then
 	if [ -e "./store/${PERSON}" ];
 	then
-	    cat "./store/${PERSON}" |
 		while read MSGLINE
 		do
 		    msg_out "${MSGLINE}"
-		done
+		done < "./store/${PERSON}"
 	    rm "./store/${PERSON}"
 	fi
     fi
