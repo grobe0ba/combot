@@ -1,19 +1,25 @@
 #!/usr/pkg/bin/bash
 
+SVC=/arpa/gm/g/grobe0ba/opt/iceland/command
+LOG=/arpa/gm/g/grobe0ba/combot/log/current
 SVCDIR=/arpa/gm/g/grobe0ba/opt/iceland/service/combot
 
 case "${1}" in
     start)
-	svc -u "${SVCDIR}"
+	${SVC}/svc -u "${SVCDIR}"
 	;;
     stop)
-	svc -d "${SVCDIR}"
+	${SVC}/svc -d "${SVCDIR}"
 	;;
     restart)
-	svc -du "${SVCDIR}" "${SVCDIR}"
+	${SVC}/svc -du "${SVCDIR}" "${SVCDIR}"
 	;;
     status)
-	svstat "${SVCDIR}" | cut -d':' -f2 | sed -e 's/^[ \t]*//'
+	${SVC}/svstat "${SVCDIR}" | cut -d':' -f2 | sed -e 's/^[ \t]*//'
+	;;
+    log)
+	clear;
+	tail -f "${LOG}" | ${SVC}/tai64nlocal
 	;;
     kill)
 	svc -td "${SVCDIR}" "${SVCDIR}"
