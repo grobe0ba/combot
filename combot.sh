@@ -27,7 +27,7 @@ exec 10<>/dev/tcp/127.0.0.1/$PORT
 sleep 5;
 
 #Join the room
-echo -en "g$ROOM\r\n" >&10
+ch_sw "${ROOM}"
 
 #Wait again for everything to settle down
 sleep 3;
