@@ -4,7 +4,7 @@
 
 PORT=64016
 
-ROOM=Mars
+ROOM=manupticon
 
 OWNER="grobe0ba@faeroes"
 BOT="bag@faeroes"

@@ -2,6 +2,9 @@
 
 # $Id$
 
+PM=0
+PMPERSON=""
+
 function msg
 {
     if [ -n "${LINE}" ];
@@ -14,9 +17,6 @@ function msg
     RLINE="${1}"
 
     PERSON="$(echo "$LINE" | cut -d' ' -f1)"
-
-    PM=0
-    PMPERSON=""
 
     if $(echo "$PERSON" | grep -q "^*");
     then
