@@ -2,8 +2,8 @@
 
 # $Id$
 
-PM=0
-PMPERSON=""
+export PM=0
+export PMPERSON=""
 
 function msg
 {
