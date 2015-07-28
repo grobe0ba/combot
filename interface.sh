@@ -42,6 +42,7 @@ function msg
 	if [ "${PERSON}" == "${OWNER}" ];
 	then
 	    . ./owner-commands.sh
+	    . ./public-commands.sh
 	else
 	    . ./public-commands.sh
 	fi
@@ -63,7 +64,9 @@ function msg
 	then
 	    echo -en "Fapprove\r\n" >&10
 	fi
-
+	
+	PM=0
+	
 	return
     fi
 }
@@ -76,6 +79,7 @@ function reply
     else
 	msg_out "${1}"
     fi
+    return
 }
     
 
