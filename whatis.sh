@@ -15,9 +15,9 @@ function whatis_add()
 	echo "${INF}" > "whatis/${WHAT}"
 	if [ -e "./whatis/${WHAT}" ];
 	then
-	    msg_out "WHATIS for ${OWHAT} stored."
+	    reply "WHATIS for ${OWHAT} stored."
 	else
-	    msg_out "Unable to store WHATIS."
+	    reply "Unable to store WHATIS."
 	fi
     fi    
 }
@@ -31,8 +31,8 @@ function whatis_list()
     if [ -e "./whatis/${WHAT}" ];
     then
 	INF="$(cat "./whatis/${WHAT}")"
-	msg_out "${INF}"
+	reply "${INF}"
     else
-	msg_out "I don't know what ${OWHAT} is, but heroin addicts probably use it."
+	reply "I don't know what ${OWHAT} is, but heroin addicts probably use it."
     fi
 }

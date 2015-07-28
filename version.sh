@@ -8,34 +8,34 @@ function getversion()
 
     case "${SECTION}" in
 	combot)
-	    msg_out "$(getident combot.sh)"
+	    reply "$(getident combot.sh)"
 	    ;;
 	msg)
-	    msg_out "$(getident message_store.sh)"
+	    reply "$(getident message_store.sh)"
 	    ;;
 	whatis)
-	    msg_out "$(getident whatis.sh)"
+	    reply "$(getident whatis.sh)"
 	    ;;
 	whois)
-	    msg_out "$(getident whois.sh)"
+	    reply "$(getident whois.sh)"
 	    ;;
 	ud)
-	    msg_out "$(getident urbandictionary.sh)"
+	    reply "$(getident urbandictionary.sh)"
 	    ;;
 	kick)
-	    msg_out "$(getident kick-handler.sh)"
+	    reply "$(getident kick-handler.sh)"
 	    ;;
 	mute)
-	    msg_out "$(getident mute-handler.sh)"
+	    reply "$(getident mute-handler.sh)"
 	    ;;
 	interface)
-	    msg_out "$(getident interface.sh)"
+	    reply "$(getident interface.sh)"
 	    ;;
 	commands)
-	    msg_out "$(getident public-commands.sh)"
+	    reply "$(getident public-commands.sh)"
 	    ;;
 	*)
-	    msg_out "$(getident public-commands.sh)"
+	    reply "$(getident public-commands.sh)"
 	    ;;
     esac
 }

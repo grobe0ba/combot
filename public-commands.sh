@@ -18,7 +18,7 @@ ARGUMENTS="$(echo "${LINE}" | cut -d' ' -f2-)"
 
 if $(echo "${LINE}" | egrep -qi "what is love");
 then
-    msg_out "Baby don't hurt me, don't hurt me, no more!"
+    reply "Baby don't hurt me, don't hurt me, no more!"
 fi
 
 case "${COMMAND}" in
@@ -29,10 +29,10 @@ case "${COMMAND}" in
 	urbandict_lookup "${ARGUMENTS}";
 	;;
     source)
-	msg_out "The CVS repository is mirrored at https://github.com/grobe0ba/combot"
+	reply "The CVS repository is mirrored at https://github.com/grobe0ba/combot"
 	;;
     commands)
-	msg_out "Public commands can be found at https://github.com/grobe0ba/combot/wiki/Public-Bot-Commands"
+	reply "Public commands can be found at https://github.com/grobe0ba/combot/wiki/Public-Bot-Commands"
 	;;
     msg)
 	send_message "${ARGUMENTS}";
@@ -40,7 +40,7 @@ case "${COMMAND}" in
 	;;
     wadd)
 	whatis_add "${ARGUMENTS}";
-	#msg_out "Please contact grobe0ba for cvs information to modify WHOIS database."
+	#reply "Please contact grobe0ba for cvs information to modify WHOIS database."
 	;;
     whois)
 	whois_list "${ARGUMENTS}";

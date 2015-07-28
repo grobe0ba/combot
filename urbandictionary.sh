@@ -9,5 +9,5 @@ function urbandict_lookup
     URL="http://www.urbandictionary.com/define.php?term=${TERM}"
     #echo -en "L${URL}\r\nUrban Dictionary: ${1}\r\n" >&10
     OLINE="$(wget -O - "${URL}" | grep -e "og:description" | ./udfilter)"
-    msg_out "Urban Dictionary on '${RTERM}': ${OLINE}"
+    reply "Urban Dictionary on '${RTERM}': ${OLINE}"
 }

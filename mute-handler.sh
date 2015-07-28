@@ -15,7 +15,7 @@ do
 	then
 	    mute_approve &
 	else
-	    msg_out "Nope, not muting him. Do thine own dirty work!"
+	    reply "Nope, not muting him. Do thine own dirty work!"
 	fi
 	break
     fi

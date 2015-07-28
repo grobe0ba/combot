@@ -11,9 +11,9 @@ function send_message
     echo "${RECIP}, message from ${PERSON}: ${MSG}" >> "./store/${RECIP}"
     if [ -e "./store/${RECIP}" ];
     then
-	msg_out "Message for ${RECIP} stored."
+	reply "Message for ${RECIP} stored."
     else
-	msg_out "Unable to store message for ${RECIP}."
+	reply "Unable to store message for ${RECIP}."
     fi
 }
 
@@ -26,7 +26,7 @@ function get_message
 	then
 		while read MSGLINE
 		do
-		    msg_out "${MSGLINE}"
+		    reply "${MSGLINE}"
 		done < "./store/${PERSON}"
 	    rm "./store/${PERSON}"
 	fi

@@ -13,7 +13,18 @@ function msg
     LINE="${1}"
     RLINE="${1}"
 
-    PERSON="$(echo "$LINE" | cut -d' ' -f1 | tr -cd "[:alnum:]@")"
+    PERSON="$(echo "$LINE" | cut -d' ' -f1)"
+
+    PM=0
+    PMPERSON=""
+
+    if $(echo "$PERSON" | grep -q "^*");
+    then
+	PM=1
+	PMPERSON="${PERSON}"
+    fi
+
+    PERSON="$(echo "${PERSON}" | tr -cd "[:alnum:]@")"
     LINE="$(echo "${LINE}" | cut -d' ' -f2- | sed -e 's/^  *//' | tr -d "[:cntrl:]")"
 
     ABUSE=0
@@ -56,6 +67,17 @@ function msg
 	return
     fi
 }
+
+function reply
+{
+    if [ "${PM}" == 1 ];
+    then
+	pm_out "${PMPERSON}" "${1}"
+    else
+	msg_out "${1}"
+    fi
+}
+    
 
 function key_out
 {

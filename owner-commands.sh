@@ -10,7 +10,7 @@ case "${COMMAND}" in
 	cleanup;
 	;;
     say)
-	msg_out "${ARGUMENTS}";
+	reply "${ARGUMENTS}";
 	;;
     emote)
 	emote "${ARGUMENTS}";

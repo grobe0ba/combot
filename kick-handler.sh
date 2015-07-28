@@ -13,9 +13,9 @@ do
     then
 	if [[ "${WHO}" != "${OWNER}" && "${WHO}" != "${BOT}" ]];
 	then
-	    kick_approve &
+	    kick_approve
 	else
-	    msg_out "Nope, not kicking him. Do thine own dirty work!"
+	    reply "Nope, not kicking him. Do thine own dirty work!"
 	fi
 	break
     fi

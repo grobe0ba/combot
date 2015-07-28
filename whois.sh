@@ -15,9 +15,9 @@ function whois_add()
 	    echo "${INF}" > "whois/${WHO}"
 	    if [ -e "./whois/${WHO}" ];
 	    then
-	    	msg_out "WHOIS for ${WHO} stored."
+	    	reply "WHOIS for ${WHO} stored."
 	    else
-		msg_out "Unable to store WHOIS."
+		reply "Unable to store WHOIS."
 	    fi
 	    break
 	fi
@@ -32,8 +32,8 @@ function whois_list()
     if [ -e "./whois/${WHO}" ];
     then
 	INF="$(cat "./whois/${WHO}")"
-	msg_out "${INF}"
+	reply "${INF}"
     else
-	msg_out "I don't know who ${WHO} is, probably a societal reject or something."
+	reply "I don't know who ${WHO} is, probably a societal reject or something."
     fi
 }
