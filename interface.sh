@@ -18,10 +18,10 @@ function msg
 
     PERSON="$(echo "$LINE" | cut -d' ' -f1)"
 
-    if $(echo "$PERSON" | grep -q "^*");
+    if $(echo "${PERSON}" | grep -q "^*");
     then
 	PM=1
-	PMPERSON="${PERSON}"
+	PMPERSON="$(echo "${PERSON}" | tr -cd "[:alnum:]@")"
     fi
 
     PERSON="$(echo "${PERSON}" | tr -cd "[:alnum:]@")"
