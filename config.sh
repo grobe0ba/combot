@@ -4,7 +4,7 @@
 
 PORT=64016
 
-ROOM=anonradio
+ROOM=mars
 
 OWNER="grobe0ba@faeroes"
 BOT="bag@faeroes"
